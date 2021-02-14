@@ -22,6 +22,7 @@ namespace ApplicationSystem.Domain.Entities
         /// <summary>
         /// Content type.
         /// </summary>
+        [Required]
         public string ContentType { get; set; }
     }
 }
