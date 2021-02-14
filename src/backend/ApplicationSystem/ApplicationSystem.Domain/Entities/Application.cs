@@ -73,13 +73,28 @@ namespace ApplicationSystem.Domain.Entities
         public Reply Reply { get; set; }
 
         /// <summary>
-        /// Is rejected flag.
+        /// Status.
         /// </summary>
-        public bool IsRejected { get; set; }
+        public ApplicationStatus Status { get; set; }
+
+        /// <summary>
+        /// Reject comments.
+        /// </summary>
+        public string RejectComments { get; set; }
 
         /// <summary>
         /// Attachments.
         /// </summary>
         public ICollection<Attachment> Attachments { get; set; }
+
+        /// <summary>
+        /// Application status.
+        /// </summary>
+        public enum ApplicationStatus
+        {
+            Open = 0,
+            Published = 1,
+            Rejected = 2
+        }
     }
 }

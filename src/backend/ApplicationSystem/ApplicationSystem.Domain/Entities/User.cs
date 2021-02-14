@@ -15,6 +15,7 @@ namespace ApplicationSystem.Domain.Entities
         public User()
         {
             Authorities = new List<Authority>();
+            Applications = new List<Application>();
         }
 
         /// <summary>
@@ -47,5 +48,10 @@ namespace ApplicationSystem.Domain.Entities
         /// Authorities.
         /// </summary>
         public ICollection<Authority> Authorities { get; set; }
+
+        /// <summary>
+        /// Applications.
+        /// </summary>
+        public ICollection<Application> Applications { get; set; }
     }
 }

@@ -30,10 +30,10 @@ namespace ApplicationSystem.Domain.Entities
         public string Text { get; set; }
 
         /// <summary>
-        /// Text date.
+        /// Last change date.
         /// </summary>
         [Required]
-        public DateTime TextDate { get; set; }
+        public DateTime LastChangeDate { get; set; }
 
         /// <summary>
         /// Edit comments.

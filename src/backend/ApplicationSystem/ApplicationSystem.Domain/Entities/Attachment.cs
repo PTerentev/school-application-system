@@ -23,15 +23,15 @@ namespace ApplicationSystem.Domain.Entities
         /// Attachment type.
         /// </summary>
         public AttachmentType Type { get; set; }
-    }
 
-    /// <summary>
-    /// Attachment type.
-    /// </summary>
-    public enum AttachmentType
-    {
-        None = 0,
-        Image = 1,
-        Video = 2
+        /// <summary>
+        /// Attachment type.
+        /// </summary>
+        public enum AttachmentType
+        {
+            None = 0,
+            Image = 1,
+            Video = 2
+        }
     }
 }
