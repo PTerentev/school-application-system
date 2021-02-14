@@ -36,5 +36,10 @@ namespace ApplicationSystem.DataAccess
         /// Notifications.
         /// </summary>
         public DbSet<Notification> Notifications { get; protected set; }
+
+        /// <summary>
+        /// Replies.
+        /// </summary>
+        public DbSet<Reply> Replies { get; protected set; }
     }
 }

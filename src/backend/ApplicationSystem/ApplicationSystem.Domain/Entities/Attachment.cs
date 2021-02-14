@@ -14,18 +14,6 @@ namespace ApplicationSystem.Domain.Entities
         public int Id { get; set; }
 
         /// <summary>
-        /// Application Id.
-        /// </summary>
-        [Required]
-        public int ApplicationId { get; set; }
-
-        /// <summary>
-        /// Application.
-        /// </summary>
-        [Required]
-        public Application Application { get; set; }
-
-        /// <summary>
         /// Link.
         /// </summary>
         [Required]

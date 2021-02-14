@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace ApplicationSystem.Domain.Entities
@@ -8,6 +9,14 @@ namespace ApplicationSystem.Domain.Entities
     /// </summary>
     public class Application
     {
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public Application()
+        {
+            Attachments = new List<Attachment>();
+        }
+
         /// <summary>
         /// Id.
         /// </summary>
@@ -38,25 +47,10 @@ namespace ApplicationSystem.Domain.Entities
         public User CreatorUser { get; set; }
 
         /// <summary>
-        /// Reply of the application.
-        /// </summary>
-        public string Reply { get; set; }
-
-        /// <summary>
-        /// Application state.
-        /// </summary>
-        public ApplicationState State { get; set; }
-
-        /// <summary>
         /// Creation date.
         /// </summary>
         [Required]
         public DateTime CreationDate { get; set; }
-
-        /// <summary>
-        /// Edit comments.
-        /// </summary>
-        public string EditComments { get; set; }
 
         /// <summary>
         /// Authority Id.
@@ -72,18 +66,20 @@ namespace ApplicationSystem.Domain.Entities
         /// Close date.
         /// </summary>
         public DateTime? CloseDate { get; set; }
-    }
 
-    /// <summary>
-    /// Application state.
-    /// </summary>
-    public enum ApplicationState
-    {
-        NotProceed = 0,
-        Rejected = 1,
-        Sent = 2,
-        ReplyReady = 3,
-        EditNeeds = 4,
-        Published = 5
+        /// <summary>
+        /// Reply.
+        /// </summary>
+        public Reply Reply { get; set; }
+
+        /// <summary>
+        /// Is rejected flag.
+        /// </summary>
+        public bool IsRejected { get; set; }
+
+        /// <summary>
+        /// Attachments.
+        /// </summary>
+        public ICollection<Attachment> Attachments { get; set; }
     }
 }
