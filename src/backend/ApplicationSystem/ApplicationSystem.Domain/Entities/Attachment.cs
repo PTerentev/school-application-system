@@ -14,24 +14,14 @@ namespace ApplicationSystem.Domain.Entities
         public int Id { get; set; }
 
         /// <summary>
-        /// Link.
+        /// Data.
         /// </summary>
         [Required]
-        public string Link { get; set; }
+        public byte[] Data { get; set; }
 
         /// <summary>
-        /// Attachment type.
+        /// Content type.
         /// </summary>
-        public AttachmentType Type { get; set; }
-
-        /// <summary>
-        /// Attachment type.
-        /// </summary>
-        public enum AttachmentType
-        {
-            None = 0,
-            Image = 1,
-            Video = 2
-        }
+        public string ContentType { get; set; }
     }
 }
