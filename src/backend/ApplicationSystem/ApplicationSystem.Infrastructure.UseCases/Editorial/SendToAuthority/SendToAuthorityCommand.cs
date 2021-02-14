@@ -1,0 +1,22 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ApplicationSystem.Infrastructure.UseCases.Editorial.SendToAuthority
+{
+    /// <summary>
+    /// Send to authority command.
+    /// </summary>
+    public class SendToAuthorityCommand
+    {
+        /// <summary>
+        /// Application Id.
+        /// </summary>
+        [Required]
+        public int ApplicationId { get; set; }
+
+        /// <summary>
+        /// Authority Id.
+        /// </summary>
+        [Required]
+        public int AuthorityId { get; set; }
+    }
+}

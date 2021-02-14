@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationSystem.Domain", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationSystem.DataAccess", "ApplicationSystem.DataAccess\ApplicationSystem.DataAccess.csproj", "{FA9823AD-B035-4D63-BA8D-950C1148BAB5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationSystem.Infrastructure.UseCases", "ApplicationSystem.Infrastructure.UseCases\ApplicationSystem.Infrastructure.UseCases.csproj", "{020B33FC-042A-452B-8BB2-3B3C37A1352A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{FA9823AD-B035-4D63-BA8D-950C1148BAB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA9823AD-B035-4D63-BA8D-950C1148BAB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA9823AD-B035-4D63-BA8D-950C1148BAB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{020B33FC-042A-452B-8BB2-3B3C37A1352A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{020B33FC-042A-452B-8BB2-3B3C37A1352A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{020B33FC-042A-452B-8BB2-3B3C37A1352A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{020B33FC-042A-452B-8BB2-3B3C37A1352A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
