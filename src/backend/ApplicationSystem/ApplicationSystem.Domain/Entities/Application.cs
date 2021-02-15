@@ -55,7 +55,7 @@ namespace ApplicationSystem.Domain.Entities
         /// <summary>
         /// Authority Id.
         /// </summary>
-        public int AuthorityId { get; set; }
+        public int? AuthorityId { get; set; }
 
         /// <summary>
         /// Authority.
@@ -86,15 +86,17 @@ namespace ApplicationSystem.Domain.Entities
         /// Attachments.
         /// </summary>
         public ICollection<Attachment> Attachments { get; set; }
+    }
 
-        /// <summary>
-        /// Application status.
-        /// </summary>
-        public enum ApplicationStatus
-        {
-            Open = 0,
-            Published = 1,
-            Rejected = 2
-        }
+    /// <summary>
+    /// Application status.
+    /// </summary>
+    public enum ApplicationStatus
+    {
+        Check = 0,
+        Sent = 1,
+        Review = 2,
+        Published = 3,
+        Rejected = 4
     }
 }

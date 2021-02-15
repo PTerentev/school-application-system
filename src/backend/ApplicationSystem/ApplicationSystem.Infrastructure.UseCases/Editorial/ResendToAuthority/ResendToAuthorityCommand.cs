@@ -1,11 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MediatR;
+using System.ComponentModel.DataAnnotations;
 
 namespace ApplicationSystem.Infrastructure.UseCases.Editorial.ResendToAuthority
 {
     /// <summary>
     /// Resend to authority command.
     /// </summary>
-    public class ResendToAuthorityCommand
+    public class ResendToAuthorityCommand : IRequest
     {
         /// <summary>
         /// Application Id.

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using ApplicationSystem.Infrastructure.UseCases.Dtos;
+using Microsoft.AspNetCore.Http;
 
 namespace ApplicationSystem.Infrastructure.UseCases.Authority.SendReplyOnReview
 {
@@ -21,9 +22,15 @@ namespace ApplicationSystem.Infrastructure.UseCases.Authority.SendReplyOnReview
         public int ApplicationId { get; set; }
 
         /// <summary>
-        /// Reply DTO.
+        /// Text.
         /// </summary>
         [Required]
-        public ReplyDto ReplyDto { get; set; }
+        public string Text { get; set; }
+
+        /// <summary>
+        /// Attachment files.
+        /// </summary>
+        [Required]
+        public IFormFileCollection FormFiles { get; set; }
     }
 }

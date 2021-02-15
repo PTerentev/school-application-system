@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ApplicationSystem.Infrastructure.UseCases.Dtos
 {
@@ -9,15 +9,23 @@ namespace ApplicationSystem.Infrastructure.UseCases.Dtos
     public class ReplyDto
     {
         /// <summary>
-        /// Text.
+        /// Reply text.
         /// </summary>
-        [Required]
         public string Text { get; set; }
 
         /// <summary>
-        /// Attachment files.
+        /// Last change date.
         /// </summary>
-        [Required]
-        public IFormFileCollection FormFiles { get; set; }
+        public DateTime LastChangeDate { get; set; }
+
+        /// <summary>
+        /// Edit comments.
+        /// </summary>
+        public string EditComments { get; set; }
+
+        /// <summary>
+        /// Attachments.
+        /// </summary>
+        public ICollection<AttachmentDto> Attachments { get; set; }
     }
 }

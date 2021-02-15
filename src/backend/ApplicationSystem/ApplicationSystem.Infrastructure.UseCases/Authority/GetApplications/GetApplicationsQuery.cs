@@ -1,11 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using ApplicationSystem.Infrastructure.UseCases.Dtos;
+using MediatR;
 
 namespace ApplicationSystem.Infrastructure.UseCases.Authority.GetApplications
 {
     /// <summary>
     /// Get applications query.
     /// </summary>
-    public class GetApplicationsQuery
+    public class GetApplicationsQuery : IRequest<ICollection<ApplicationDto>>
     {
         /// <summary>
         /// Authority Id.
