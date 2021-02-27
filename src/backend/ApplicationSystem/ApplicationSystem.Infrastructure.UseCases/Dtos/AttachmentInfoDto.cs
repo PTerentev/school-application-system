@@ -3,7 +3,7 @@
     /// <summary>
     /// Attachment DTO.
     /// </summary>
-    public class AttachmentDto
+    public class AttachmentInfoDto
     {
         /// <summary>
         /// Id.

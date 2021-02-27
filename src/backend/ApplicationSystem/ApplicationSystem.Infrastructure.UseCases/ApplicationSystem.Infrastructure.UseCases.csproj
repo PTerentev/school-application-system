@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ApplicationSystem.DataAccess\ApplicationSystem.DataAccess.csproj" />
+    <ProjectReference Include="..\ApplicationSystem.Infrastructure.Abstractions\ApplicationSystem.Infrastructure.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

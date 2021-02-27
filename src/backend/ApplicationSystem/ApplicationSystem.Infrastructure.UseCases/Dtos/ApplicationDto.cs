@@ -47,6 +47,6 @@ namespace ApplicationSystem.Infrastructure.UseCases.Dtos
         /// <summary>
         /// Attachments.
         /// </summary>
-        public ICollection<AttachmentDto> Attachments { get; set; }
+        public ICollection<AttachmentInfoDto> Attachments { get; set; }
     }
 }
