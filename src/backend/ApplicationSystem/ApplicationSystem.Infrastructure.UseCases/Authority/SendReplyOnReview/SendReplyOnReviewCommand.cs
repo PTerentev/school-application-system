@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using ApplicationSystem.Infrastructure.UseCases.Dtos;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 
 namespace ApplicationSystem.Infrastructure.UseCases.Authority.SendReplyOnReview
@@ -7,8 +7,13 @@ namespace ApplicationSystem.Infrastructure.UseCases.Authority.SendReplyOnReview
     /// <summary>
     /// Send reply on review command.
     /// </summary>
-    public class SendReplyOnReviewCommand
+    public class SendReplyOnReviewCommand : IRequest
     {
+        /// <summary>
+        /// User Id.
+        /// </summary>
+        public int UserId { get; set; }
+
         /// <summary>
         /// Authority Id.
         /// </summary>
@@ -30,7 +35,6 @@ namespace ApplicationSystem.Infrastructure.UseCases.Authority.SendReplyOnReview
         /// <summary>
         /// Attachment files.
         /// </summary>
-        [Required]
         public IFormFileCollection FormFiles { get; set; }
     }
 }

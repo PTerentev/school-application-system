@@ -15,5 +15,10 @@ namespace ApplicationSystem.Infrastructure.UseCases.Authority.GetApplications
         /// </summary>
         [Required]
         public int AuthorityId { get; set; }
+
+        /// <summary>
+        /// User Id.
+        /// </summary>
+        public int UserId { get; set; }
     }
 }

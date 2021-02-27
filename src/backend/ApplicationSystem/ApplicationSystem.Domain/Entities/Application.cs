@@ -39,7 +39,7 @@ namespace ApplicationSystem.Domain.Entities
         /// <summary>
         /// Creator user Id.
         /// </summary>
-        public int CreatorUserId { get; set; }
+        public int? CreatorUserId { get; set; }
 
         /// <summary>
         /// Creator user.

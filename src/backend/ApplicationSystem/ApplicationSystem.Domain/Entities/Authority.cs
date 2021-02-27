@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ApplicationSystem.Domain.Entities
 {
@@ -7,6 +8,14 @@ namespace ApplicationSystem.Domain.Entities
     /// </summary>
     public class Authority
     {
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public Authority()
+        {
+            Users = new List<User>();
+        }
+
         /// <summary>
         /// Id.
         /// </summary>
@@ -35,5 +44,10 @@ namespace ApplicationSystem.Domain.Entities
         /// Main user.
         /// </summary>
         public User MainUser { get; set; }
+
+        /// <summary>
+        /// Users.
+        /// </summary>
+        public ICollection<User> Users { get; set; }
     }
 }
