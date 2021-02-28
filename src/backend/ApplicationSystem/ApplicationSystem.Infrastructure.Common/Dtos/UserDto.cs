@@ -1,4 +1,4 @@
-﻿namespace ApplicationSystem.Infrastructure.UseCases.Dtos
+﻿namespace ApplicationSystem.Infrastructure.Common.Dtos
 {
     /// <summary>
     /// User DTO.

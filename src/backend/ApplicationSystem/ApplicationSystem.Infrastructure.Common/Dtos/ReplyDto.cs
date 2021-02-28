@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using ApplicationSystem.Infrastructure.Common.Dtos.Attachments;
 
-namespace ApplicationSystem.Infrastructure.UseCases.Dtos
+namespace ApplicationSystem.Infrastructure.Common.Dtos
 {
     /// <summary>
     /// Reply DTO.

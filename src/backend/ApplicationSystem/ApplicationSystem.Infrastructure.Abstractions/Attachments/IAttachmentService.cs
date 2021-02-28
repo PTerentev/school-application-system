@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
+using ApplicationSystem.Infrastructure.Common.Dtos.Attachments;
 
 namespace ApplicationSystem.Infrastructure.Abstractions.Attachments
 {

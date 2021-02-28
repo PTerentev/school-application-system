@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using ApplicationSystem.Domain.Entities;
+using ApplicationSystem.Infrastructure.Common.Application;
+using ApplicationSystem.Infrastructure.Common.Dtos.Attachments;
 
-namespace ApplicationSystem.Infrastructure.UseCases.Dtos
+namespace ApplicationSystem.Infrastructure.Common.Dtos
 {
     /// <summary>
     /// Application DTO.
@@ -27,7 +28,7 @@ namespace ApplicationSystem.Infrastructure.UseCases.Dtos
         /// <summary>
         /// Creator user Id.
         /// </summary>
-        public int CreatorUserId { get; set; }
+        public int? CreatorUserId { get; set; }
 
         /// <summary>
         /// Creation date.
@@ -37,7 +38,7 @@ namespace ApplicationSystem.Infrastructure.UseCases.Dtos
         /// <summary>
         /// Authority Id.
         /// </summary>
-        public int AuthorityId { get; set; }
+        public int? AuthorityId { get; set; }
 
         /// <summary>
         /// Status.
@@ -48,5 +49,20 @@ namespace ApplicationSystem.Infrastructure.UseCases.Dtos
         /// Attachments.
         /// </summary>
         public ICollection<AttachmentInfoDto> Attachments { get; set; }
+
+        /// <summary>
+        /// Close date.
+        /// </summary>
+        public DateTime? CloseDate { get; set; }
+
+        /// <summary>
+        /// Reply.
+        /// </summary>
+        public ReplyDto Reply { get; set; }
+
+        /// <summary>
+        /// Reject comments.
+        /// </summary>
+        public string RejectComments { get; set; }
     }
 }

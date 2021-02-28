@@ -6,8 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using MediatR;
 using ApplicationSystem.DataAccess;
-using ApplicationSystem.Domain.Entities;
-using ApplicationSystem.Infrastructure.UseCases.Dtos;
+using ApplicationSystem.Infrastructure.Common.Dtos;
+using ApplicationSystem.Infrastructure.Common.Application;
 
 namespace ApplicationSystem.Infrastructure.UseCases.Editorial.GetApplications
 {

@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Saritasa.Tools.Domain.Exceptions;
 using ApplicationSystem.DataAccess;
 using ApplicationSystem.Domain.Entities;
+using ApplicationSystem.Infrastructure.Common.Application;
 
 namespace ApplicationSystem.Infrastructure.UseCases.Editorial.ResendToAuthority
 {

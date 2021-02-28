@@ -1,4 +1,4 @@
-﻿using ApplicationSystem.Infrastructure.UseCases.Dtos;
+﻿using ApplicationSystem.Infrastructure.Common.Dtos;
 using MediatR;
 using System.Collections.Generic;
 

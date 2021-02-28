@@ -6,9 +6,10 @@ using ApplicationSystem.DataAccess;
 using ApplicationSystem.Domain.Entities;
 using AutoMapper;
 using System.Collections.Generic;
-using ApplicationSystem.Infrastructure.UseCases.Dtos;
+using ApplicationSystem.Infrastructure.Common.Dtos;
 using Saritasa.Tools.Domain.Exceptions;
 using MediatR;
+using ApplicationSystem.Infrastructure.Common.Application;
 
 namespace ApplicationSystem.Infrastructure.UseCases.Authority.GetApplications
 {

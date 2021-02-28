@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using ApplicationSystem.Infrastructure.Common.Application;
 
 namespace ApplicationSystem.Domain.Entities
 {
@@ -86,17 +87,5 @@ namespace ApplicationSystem.Domain.Entities
         /// Attachments.
         /// </summary>
         public ICollection<Attachment> Attachments { get; set; }
-    }
-
-    /// <summary>
-    /// Application status.
-    /// </summary>
-    public enum ApplicationStatus
-    {
-        Check = 0,
-        Sent = 1,
-        Review = 2,
-        Published = 3,
-        Rejected = 4
     }
 }

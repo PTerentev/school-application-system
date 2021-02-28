@@ -6,6 +6,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using ApplicationSystem.DataAccess;
 using ApplicationSystem.Domain.Entities;
+using ApplicationSystem.Infrastructure.Common.Application;
 
 namespace ApplicationSystem.Infrastructure.UseCases.Editorial.RejectApplication
 {

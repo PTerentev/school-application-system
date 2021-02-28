@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ApplicationSystem.Infrastructure.Abstractions.Attachments
+﻿namespace ApplicationSystem.Infrastructure.Common.Dtos.Attachments
 {
     /// <summary>
     /// Attachment DTO.

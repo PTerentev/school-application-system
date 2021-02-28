@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using ApplicationSystem.Infrastructure.UseCases.Dtos;
+using ApplicationSystem.Infrastructure.Common.Dtos;
 using MediatR;
 
 namespace ApplicationSystem.Infrastructure.UseCases.Authority.GetApplications

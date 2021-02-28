@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ApplicationSystem.DataAccess;
 using ApplicationSystem.Domain.Entities;
 using ApplicationSystem.Infrastructure.Abstractions.Attachments;
+using ApplicationSystem.Infrastructure.Common.Application;
 using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
