@@ -36,16 +36,6 @@ namespace ApplicationSystem.Domain.Entities
         public string Description { get; set; }
 
         /// <summary>
-        /// Main user Id.
-        /// </summary>
-        public int MainUserId { get; set; }
-
-        /// <summary>
-        /// Main user.
-        /// </summary>
-        public User MainUser { get; set; }
-
-        /// <summary>
         /// Users.
         /// </summary>
         public ICollection<User> Users { get; set; }
