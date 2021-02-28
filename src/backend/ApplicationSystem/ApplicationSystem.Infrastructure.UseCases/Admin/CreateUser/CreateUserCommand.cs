@@ -1,7 +1,6 @@
-﻿using ApplicationSystem.Infrastructure.Common.Dtos;
-using ApplicationSystem.Infrastructure.Common.Dtos;
+﻿using System.ComponentModel.DataAnnotations;
 using MediatR;
-using System.ComponentModel.DataAnnotations;
+using ApplicationSystem.Infrastructure.Common.Dtos;
 
 namespace ApplicationSystem.Infrastructure.UseCases.Admin.CreateUser
 {

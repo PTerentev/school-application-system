@@ -8,6 +8,7 @@
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="MediatR" Version="9.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Saritasa.Tools.Common" Version="3.3.1" />
     <PackageReference Include="Saritasa.Tools.Domain" Version="0.8.2" />
     <PackageReference Include="Saritasa.Tools.EFCore5" Version="0.8.2" />
