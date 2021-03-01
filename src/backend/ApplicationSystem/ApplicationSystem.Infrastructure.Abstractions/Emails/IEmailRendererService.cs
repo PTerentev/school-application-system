@@ -13,9 +13,35 @@ namespace ApplicationSystem.Infrastructure.Abstractions.Emails
         /// <summary>
         /// Render rejected application content.
         /// </summary>
-        /// <param name="applicationDto">ApplicationDto</param>
+        /// <param name="applicationDto">Application.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns>Email content.</returns>
-        Task<EmailContentDto> RenderRejectedApplicationContentAsync(ApplicationDto applicationDto, CancellationToken cancellationToken);
+        Task<EmailContentDto> RenderRejectedApplicationContentAsync(ApplicationInfoDto applicationDto, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Render published application content.
+        /// </summary>
+        /// <param name="applicationDto">Application.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>Email content.</returns>
+        Task<EmailContentDto> RenderPublishedApplicationContentAsync(ApplicationInfoDto applicationDto, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Render new application content.
+        /// For editorials.
+        /// </summary>
+        /// <param name="applicationDto">Application.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>Email content.</returns>
+        Task<EmailContentDto> RenderNewApplicationContentAsync(ApplicationInfoDto applicationDto, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Render authority content.
+        /// For editorials.
+        /// </summary>
+        /// <param name="applicationDto">Application.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>Email content.</returns>
+        Task<EmailContentDto> RenderAuthorityContentAsync(ApplicationInfoDto applicationDto, CancellationToken cancellationToken);
     }
 }

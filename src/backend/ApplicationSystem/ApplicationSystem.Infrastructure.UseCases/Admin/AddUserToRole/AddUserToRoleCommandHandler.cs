@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ApplicationSystem.DataAccess;
 using ApplicationSystem.Domain.Entities;
+using Saritasa.Tools.Domain.Exceptions;
 
 namespace ApplicationSystem.Infrastructure.UseCases.Admin.AddUserToRole
 {
@@ -14,12 +15,12 @@ namespace ApplicationSystem.Infrastructure.UseCases.Admin.AddUserToRole
     internal class AddUserToRoleCommandHandler : IRequestHandler<AddUserToRoleCommand>
     {
         private readonly ApplicationDbContext dbContext;
-        private readonly UserManager<User> userManager;
+        private readonly UserManager<Domain.Entities.User> userManager;
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        public AddUserToRoleCommandHandler(UserManager<User> userManager, ApplicationDbContext dbContext)
+        public AddUserToRoleCommandHandler(UserManager<Domain.Entities.User> userManager, ApplicationDbContext dbContext)
         {
             this.dbContext = dbContext;
             this.userManager = userManager;
@@ -29,7 +30,12 @@ namespace ApplicationSystem.Infrastructure.UseCases.Admin.AddUserToRole
         public async Task<Unit> Handle(AddUserToRoleCommand request, CancellationToken cancellationToken)
         {
             var user = await dbContext.Users.SingleAsync(u => u.Id == request.UserId, cancellationToken);
-            await userManager.AddToRoleAsync(user, request.Role);
+            var result = await userManager.AddToRoleAsync(user, request.Role);
+
+            if (!result.Succeeded)
+            {
+                throw new DomainException("Role data is invalid.");
+            }
 
             return Unit.Value;
         }

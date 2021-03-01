@@ -10,7 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Saritasa.Tools.Domain.Exceptions;
 
-namespace TravelTeam.Web.Infrastructure.Middlewares
+namespace ApplicationSystem.Infrastructure.Web.Infrastructure.Middlewares
 {
     /// <summary>
     /// API exception middleware.

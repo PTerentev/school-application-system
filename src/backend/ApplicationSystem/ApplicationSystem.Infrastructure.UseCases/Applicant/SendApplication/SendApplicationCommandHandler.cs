@@ -1,12 +1,18 @@
 ﻿using System;
 using System.Linq;
+using System.Net.Mail;
 using System.Threading;
 using System.Threading.Tasks;
-using AutoMapper;
+using System.Collections.Generic;
 using MediatR;
+using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using ApplicationSystem.DataAccess;
 using ApplicationSystem.Domain.Entities;
 using ApplicationSystem.Infrastructure.Abstractions.Attachments;
+using ApplicationSystem.Infrastructure.Common.Dtos;
+using ApplicationSystem.Infrastructure.Abstractions.Emails;
+using ApplicationSystem.Infrastructure.Common.Dtos.Emails;
 
 namespace ApplicationSystem.Infrastructure.UseCases.Applicant.SendApplication
 {
@@ -16,17 +22,29 @@ namespace ApplicationSystem.Infrastructure.UseCases.Applicant.SendApplication
     internal class SendApplicationCommandHandler : IRequestHandler<SendApplicationCommand>
     {
         private readonly ApplicationDbContext dbContext;
-        private readonly IMapper mapper;
         private readonly IAttachmentService attachmentService;
+        private readonly IMapper mapper;
+        private readonly IEmailRendererService emailRendererService;
+        private readonly ISmptService smptService;
+        private readonly UserManager<Domain.Entities.User> userManager;
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        public SendApplicationCommandHandler(ApplicationDbContext dbContext, IMapper mapper, IAttachmentService attachmentService)
+        public SendApplicationCommandHandler(
+            ApplicationDbContext dbContext, 
+            IAttachmentService attachmentService, 
+            IMapper mapper, 
+            IEmailRendererService emailRendererService,
+            ISmptService smptService,
+            UserManager<Domain.Entities.User> userManager)
         {
             this.dbContext = dbContext;
-            this.mapper = mapper;
             this.attachmentService = attachmentService;
+            this.mapper = mapper;
+            this.emailRendererService = emailRendererService;
+            this.smptService = smptService;
+            this.userManager = userManager;
         }
 
         /// <inheritdoc/>
@@ -44,7 +62,7 @@ namespace ApplicationSystem.Infrastructure.UseCases.Applicant.SendApplication
             {
                 var attachments = attachmentService
                     .GenerateAttachments(request.FormFiles)
-                    .Select(a => new Attachment()
+                    .Select(a => new Domain.Entities.Attachment()
                     {
                         Data = a.Data,
                         ContentType = a.ContentType
@@ -61,7 +79,25 @@ namespace ApplicationSystem.Infrastructure.UseCases.Applicant.SendApplication
             dbContext.Applications.Add(application);
             await dbContext.SaveChangesAsync(cancellationToken);
 
+            var editorialUsers = await userManager.GetUsersInRoleAsync(Role.EditorRole);
+            var emails = editorialUsers.Select(u => u.Email);
+
+            await SendEmailsToEditorial(emails, mapper.Map<ApplicationInfoDto>(application), CancellationToken.None);
+
             return Unit.Value;
+        }
+
+        private async Task SendEmailsToEditorial(IEnumerable<string> emails, ApplicationInfoDto applicationInfo, CancellationToken cancellationToken)
+        {
+            var content = await emailRendererService.RenderNewApplicationContentAsync(applicationInfo, cancellationToken);
+
+            var emailDto = new EmailDto()
+            {
+                EmailContent = content,
+                ToMailAddresses = emails.Select(e => new MailAddress(e)).ToList()
+            };
+
+            await smptService.SendEmailAsync(emailDto, cancellationToken);
         }
     }
 }

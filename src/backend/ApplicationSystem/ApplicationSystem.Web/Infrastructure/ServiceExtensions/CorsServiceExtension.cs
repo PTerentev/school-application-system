@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace TravelTeam.Web.Infrastructure.ServiceExtensions
+namespace ApplicationSystem.Infrastructure.Web.Infrastructure.ServiceExtensions
 {
     /// <summary>
     /// CORS policy extension.

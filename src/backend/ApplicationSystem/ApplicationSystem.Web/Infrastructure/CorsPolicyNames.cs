@@ -1,4 +1,4 @@
-﻿namespace TravelTeam.Web.Infrastructure
+﻿namespace ApplicationSystem.Infrastructure.Web.Infrastructure
 {
     /// <summary>
     /// CORS policy names.
