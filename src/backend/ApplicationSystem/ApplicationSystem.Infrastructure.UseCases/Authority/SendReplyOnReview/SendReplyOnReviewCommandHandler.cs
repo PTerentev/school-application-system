@@ -6,6 +6,7 @@ using ApplicationSystem.DataAccess;
 using ApplicationSystem.Domain.Entities;
 using ApplicationSystem.Infrastructure.Abstractions.Attachments;
 using ApplicationSystem.Infrastructure.Common.Application;
+using ApplicationSystem.Infrastructure.UseCases.Common;
 using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -55,13 +56,13 @@ namespace ApplicationSystem.Infrastructure.UseCases.Authority.SendReplyOnReview
 
             if (request.FormFiles != null)
             {
-                var attachments = attachmentService
-                    .GenerateAttachments(request.FormFiles)
-                    .Select(a => new Attachment()
-                    {
-                        Data = a.Data,
-                        ContentType = a.ContentType
-                    }).ToList();
+                var attachments = await AttachmentHelper.GenerateAttachmentsAsync(
+                    request.FormFiles,
+                    attachmentService,
+                    mapper,
+                    cancellationToken
+                    );
+
                 reply.Attachments = attachments;
                 dbContext.Attachments.AddRange(attachments);
             }

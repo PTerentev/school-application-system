@@ -13,7 +13,8 @@ namespace ApplicationSystem.Infrastructure.UseCases.User.Register
         public MappingProfile()
         {
             CreateMap<RegisterUserCommand, Domain.Entities.User>()
-                .ForSourceMember(r => r.Password, opt => opt.DoNotValidate());
+                .ForSourceMember(c => c.Password, opt => opt.DoNotValidate())
+                .ForMember(u => u.UserName, opt => opt.MapFrom(c => c.Email));
         }
     }
 }

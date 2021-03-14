@@ -1,18 +1,13 @@
 ﻿namespace ApplicationSystem.Infrastructure.Common.Dtos.Attachments
 {
     /// <summary>
-    /// Attachment DTO.
+    /// Attachment information.
     /// </summary>
     public class AttachmentInfoDto
     {
         /// <summary>
-        /// Id.
+        /// File URL.
         /// </summary>
-        public int Id { get; set; }
-
-        /// <summary>
-        /// Content type.
-        /// </summary>
-        public string ContentType { get; set; }
+        public string FileUrl { get; set; }
     }
 }

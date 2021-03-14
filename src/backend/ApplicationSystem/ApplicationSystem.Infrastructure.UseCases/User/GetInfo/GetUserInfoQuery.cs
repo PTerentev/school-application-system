@@ -8,6 +8,6 @@ namespace ApplicationSystem.Infrastructure.UseCases.User.GetInfo
     /// </summary>
     public class GetUserInfoQuery : IRequest<UserDto>
     {
-        public string UserId { get; set; }
+        public int UserId { get; set; }
     }
 }

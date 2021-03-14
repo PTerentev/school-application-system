@@ -2,7 +2,8 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using ApplicationSystem.DataAccess;
 using ApplicationSystem.Infrastructure.Common.Dtos;
 
 namespace ApplicationSystem.Infrastructure.UseCases.User.GetInfo
@@ -12,22 +13,22 @@ namespace ApplicationSystem.Infrastructure.UseCases.User.GetInfo
     /// </summary>
     internal class GetUserInfoQueryHandler : IRequestHandler<GetUserInfoQuery, UserDto>
     {
-        private readonly UserManager<Domain.Entities.User> userManager;
+        private readonly ApplicationDbContext dbContext;
         private readonly IMapper mapper;
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        public GetUserInfoQueryHandler(UserManager<Domain.Entities.User> userManager, IMapper mapper)
+        public GetUserInfoQueryHandler(ApplicationDbContext dbContext, IMapper mapper)
         {
-            this.userManager = userManager;
+            this.dbContext = dbContext;
             this.mapper = mapper;
         }
 
         /// <inheritdoc/>
         public async Task<UserDto> Handle(GetUserInfoQuery request, CancellationToken cancellationToken)
         {
-            var user = await userManager.FindByIdAsync(request.UserId);
+            var user = await dbContext.Users.SingleAsync(u => u.Id == request.UserId);
             var userDto = mapper.Map<UserDto>(user);
 
             return userDto;

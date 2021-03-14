@@ -13,6 +13,7 @@ using ApplicationSystem.Infrastructure.Abstractions.Attachments;
 using ApplicationSystem.Infrastructure.Common.Dtos;
 using ApplicationSystem.Infrastructure.Abstractions.Emails;
 using ApplicationSystem.Infrastructure.Common.Dtos.Emails;
+using ApplicationSystem.Infrastructure.UseCases.Common;
 
 namespace ApplicationSystem.Infrastructure.UseCases.Applicant.SendApplication
 {
@@ -60,13 +61,12 @@ namespace ApplicationSystem.Infrastructure.UseCases.Applicant.SendApplication
 
             if (request.FormFiles != null)
             {
-                var attachments = attachmentService
-                    .GenerateAttachments(request.FormFiles)
-                    .Select(a => new Domain.Entities.Attachment()
-                    {
-                        Data = a.Data,
-                        ContentType = a.ContentType
-                    }).ToList();
+                var attachments = await AttachmentHelper.GenerateAttachmentsAsync(
+                    request.FormFiles, 
+                    attachmentService,
+                    mapper,
+                    cancellationToken
+                    );
 
                 dbContext.Attachments.AddRange(attachments);
                 application.Attachments = attachments;

@@ -14,10 +14,10 @@ namespace ApplicationSystem.Domain.Entities
         public int Id { get; set; }
 
         /// <summary>
-        /// Data.
+        /// File URL.
         /// </summary>
         [Required]
-        public byte[] Data { get; set; }
+        public string FileUrl { get; set; }
 
         /// <summary>
         /// Content type.

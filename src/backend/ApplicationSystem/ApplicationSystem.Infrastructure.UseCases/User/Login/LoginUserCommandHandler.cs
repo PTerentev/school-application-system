@@ -18,11 +18,6 @@ namespace ApplicationSystem.Infrastructure.UseCases.User.Login
     /// </summary>
     internal class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, LoginUserCommandResult>
     {
-        /// <summary>
-        /// Issued at date/time claim. https://tools.ietf.org/html/rfc7519#page-10 .
-        /// </summary>
-        public const string IatClaimType = "iat";
-
         private readonly SignInManager<Domain.Entities.User> signInManager;
         private readonly UserManager<Domain.Entities.User> userManager;
         private readonly IAccessTokenGenerationService accessTokenGenerationService;
@@ -55,18 +50,19 @@ namespace ApplicationSystem.Infrastructure.UseCases.User.Login
             }
 
             var principal = await signInManager.CreateUserPrincipalAsync(user);
+            var token = GenerateToken(principal.Claims.ToList());
 
             return new LoginUserCommandResult
             {
                 User = mapper.Map<UserDto>(user),
-                Token = Generate(principal.Claims.ToList())
+                Token = token
             };
         }
 
-        private string Generate(ICollection<Claim> claims)
+        private string GenerateToken(ICollection<Claim> claims)
         {
             var iatClaim = new Claim(
-                IatClaimType,
+                JwtTokenConstants.IatClaimType,
                 DateTime.UtcNow.Ticks.ToString(),
                 ClaimValueTypes.Integer64);
 
