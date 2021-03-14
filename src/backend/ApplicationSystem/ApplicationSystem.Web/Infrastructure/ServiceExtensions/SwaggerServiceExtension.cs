@@ -25,8 +25,8 @@ namespace ApplicationSystem.Web.Infrastructure.ServiceExtensions
             options.SwaggerDoc("v1", new OpenApiInfo
             {
                 Version = "1.0.0",
-                Title = "TravelTeam",
-                Description = "API documentation for TravelTeam project.",
+                Title = "Application System",
+                Description = "API documentation for Application System project.",
                 Contact = new OpenApiContact
                 {
                     Name = "Pavel Terentev",

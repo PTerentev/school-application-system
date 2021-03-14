@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="MediatR" Version="9.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Saritasa.Tools.Common" Version="3.3.1" />
+    <PackageReference Include="Saritasa.Tools.Domain" Version="0.8.2" />
+    <PackageReference Include="Saritasa.Tools.EFCore5" Version="0.8.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ApplicationSystem.DataAccess\ApplicationSystem.DataAccess.csproj" />
+    <ProjectReference Include="..\ApplicationSystem.Infrastructure.Abstractions\ApplicationSystem.Infrastructure.Abstractions.csproj" />
+    <ProjectReference Include="..\ApplicationSystem.Infrastructure.Common\ApplicationSystem.Infrastructure.Common.csproj" />
+  </ItemGroup>
+
+</Project>

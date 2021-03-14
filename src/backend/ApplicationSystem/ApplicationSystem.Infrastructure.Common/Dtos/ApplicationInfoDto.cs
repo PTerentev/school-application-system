@@ -1,67 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using ApplicationSystem.Infrastructure.Common.Application;
+using ApplicationSystem.Infrastructure.Common.Dtos.Attachments;
 
-namespace ApplicationSystem.Domain.Entities
+namespace ApplicationSystem.Infrastructure.Common.Dtos
 {
     /// <summary>
-    /// Application.
+    /// Application info DTO.
     /// </summary>
-    public class Application
+    public class ApplicationInfoDto
     {
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        public Application()
-        {
-            Attachments = new List<Attachment>();
-        }
-
         /// <summary>
         /// Id.
         /// </summary>
-        [Key]
         public int Id { get; set; }
 
         /// <summary>
         /// Name of the application.
         /// </summary>
-        [Required]
-        [MaxLength(255)]
         public string Name { get; set; }
 
         /// <summary>
         /// Description.
         /// </summary>
-        [Required]
         public string Description { get; set; }
-
-        /// <summary>
-        /// Creator user Id.
-        /// </summary>
-        public int? CreatorUserId { get; set; }
-
-        /// <summary>
-        /// Creator user.
-        /// </summary>
-        public User CreatorUser { get; set; }
 
         /// <summary>
         /// Creation date.
         /// </summary>
-        [Required]
         public DateTime CreationDate { get; set; }
 
         /// <summary>
-        /// Authority Id.
+        /// Status.
         /// </summary>
-        public int? AuthorityId { get; set; }
+        public ApplicationStatus Status { get; set; }
 
         /// <summary>
-        /// Authority.
+        /// Attachments.
         /// </summary>
-        public Authority Authority { get; set; }
+        public ICollection<AttachmentInfoDto> Attachments { get; set; }
 
         /// <summary>
         /// Close date.
@@ -71,21 +48,16 @@ namespace ApplicationSystem.Domain.Entities
         /// <summary>
         /// Reply.
         /// </summary>
-        public Reply Reply { get; set; }
+        public string ReplyText { get; set; }
 
         /// <summary>
-        /// Status.
+        /// Reply attachments.
         /// </summary>
-        public ApplicationStatus Status { get; set; }
+        public ICollection<AttachmentInfoDto> ReplyAttachments { get; set; }
 
         /// <summary>
         /// Reject comments.
         /// </summary>
         public string RejectComments { get; set; }
-
-        /// <summary>
-        /// Attachments.
-        /// </summary>
-        public ICollection<Attachment> Attachments { get; set; }
     }
 }

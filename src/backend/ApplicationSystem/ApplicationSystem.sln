@@ -3,11 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationSystem.Web", "ApplicationSystem.Web\ApplicationSystem.Web.csproj", "{F9F2DA6D-F322-4C2A-A497-D54ECF64FB84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationSystem.Web", "ApplicationSystem.Web\ApplicationSystem.Web.csproj", "{F9F2DA6D-F322-4C2A-A497-D54ECF64FB84}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationSystem.Domain", "ApplicationSystem.Domain\ApplicationSystem.Domain.csproj", "{AEE2B4C1-2B81-4B90-A337-7224872EF017}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationSystem.Domain", "ApplicationSystem.Domain\ApplicationSystem.Domain.csproj", "{AEE2B4C1-2B81-4B90-A337-7224872EF017}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationSystem.DataAccess", "ApplicationSystem.DataAccess\ApplicationSystem.DataAccess.csproj", "{FA9823AD-B035-4D63-BA8D-950C1148BAB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationSystem.DataAccess", "ApplicationSystem.DataAccess\ApplicationSystem.DataAccess.csproj", "{FA9823AD-B035-4D63-BA8D-950C1148BAB5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationSystem.Infrastructure.UseCases", "ApplicationSystem.Infrastructure.UseCases\ApplicationSystem.Infrastructure.UseCases.csproj", "{020B33FC-042A-452B-8BB2-3B3C37A1352A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationSystem.Infrastructure.Abstractions", "ApplicationSystem.Infrastructure.Abstractions\ApplicationSystem.Infrastructure.Abstractions.csproj", "{30377F37-89AD-4B75-8A20-710E508DE6A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationSystem.Infrastructure.Common", "ApplicationSystem.Infrastructure.Common\ApplicationSystem.Infrastructure.Common.csproj", "{E23901E2-1946-477C-AE61-0ABFDC436DFA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +33,18 @@ Global
 		{FA9823AD-B035-4D63-BA8D-950C1148BAB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA9823AD-B035-4D63-BA8D-950C1148BAB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA9823AD-B035-4D63-BA8D-950C1148BAB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{020B33FC-042A-452B-8BB2-3B3C37A1352A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{020B33FC-042A-452B-8BB2-3B3C37A1352A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{020B33FC-042A-452B-8BB2-3B3C37A1352A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{020B33FC-042A-452B-8BB2-3B3C37A1352A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30377F37-89AD-4B75-8A20-710E508DE6A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30377F37-89AD-4B75-8A20-710E508DE6A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30377F37-89AD-4B75-8A20-710E508DE6A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30377F37-89AD-4B75-8A20-710E508DE6A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E23901E2-1946-477C-AE61-0ABFDC436DFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E23901E2-1946-477C-AE61-0ABFDC436DFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E23901E2-1946-477C-AE61-0ABFDC436DFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E23901E2-1946-477C-AE61-0ABFDC436DFA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

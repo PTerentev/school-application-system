@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace TravelTeam.Web.Infrastructure.Middlewares
+namespace ApplicationSystem.Infrastructure.Web.Infrastructure.Middlewares
 {
     /// <summary>
     /// Problem field DTO.
