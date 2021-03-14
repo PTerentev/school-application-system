@@ -2,15 +2,13 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using ApplicationSystem.DataAccess;
-using ApplicationSystem.Domain.Entities;
-using ApplicationSystem.Infrastructure.Abstractions.Attachments;
-using ApplicationSystem.Infrastructure.Common.Application;
-using ApplicationSystem.Infrastructure.UseCases.Common;
 using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Saritasa.Tools.Domain.Exceptions;
+using ApplicationSystem.DataAccess;
+using ApplicationSystem.Infrastructure.Abstractions.Attachments;
+using ApplicationSystem.Infrastructure.Common.Application;
+using ApplicationSystem.Infrastructure.UseCases.Common;
 
 namespace ApplicationSystem.Infrastructure.UseCases.Authority.SendReplyOnReview
 {
@@ -36,12 +34,6 @@ namespace ApplicationSystem.Infrastructure.UseCases.Authority.SendReplyOnReview
         /// <inheritdoc/>
         public async Task<Unit> Handle(SendReplyOnReviewCommand request, CancellationToken cancellationToken)
         {
-            var authority = await dbContext.Authorities.Where(a => a.Id == request.AuthorityId).SingleAsync(cancellationToken);
-            if (!authority.Users.Any(u => u.Id == request.UserId))
-            {
-                throw new ValidationException("The user does not have access to the authority.");
-            }
-
             var application = await dbContext.Applications
                     .Where(a => a.Id == request.ApplicationId)
                     .Where(a => a.Status == ApplicationStatus.Sent)

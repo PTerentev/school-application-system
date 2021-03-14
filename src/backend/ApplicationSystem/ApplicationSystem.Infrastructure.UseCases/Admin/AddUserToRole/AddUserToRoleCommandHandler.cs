@@ -4,7 +4,6 @@ using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ApplicationSystem.DataAccess;
-using ApplicationSystem.Domain.Entities;
 using Saritasa.Tools.Domain.Exceptions;
 
 namespace ApplicationSystem.Infrastructure.UseCases.Admin.AddUserToRole

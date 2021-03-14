@@ -16,7 +16,7 @@ namespace ApplicationSystem.Infrastructure.UseCases.User.Login
     /// <summary>
     /// Login user command handler.
     /// </summary>
-    internal class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, LoginUserCommandResult>
+    internal class LoginUserQueryHandler : IRequestHandler<LoginUserQuery, LoginUserQueryResult>
     {
         private readonly SignInManager<Domain.Entities.User> signInManager;
         private readonly UserManager<Domain.Entities.User> userManager;
@@ -26,7 +26,7 @@ namespace ApplicationSystem.Infrastructure.UseCases.User.Login
         /// <summary>
         /// Constructor.
         /// </summary>
-        public LoginUserCommandHandler(
+        public LoginUserQueryHandler(
             SignInManager<Domain.Entities.User> signInManager, 
             UserManager<Domain.Entities.User> userManager, 
             IAccessTokenGenerationService accessTokenGenerationService,
@@ -39,7 +39,7 @@ namespace ApplicationSystem.Infrastructure.UseCases.User.Login
         }
 
         /// <inheritdoc/>
-        public async Task<LoginUserCommandResult> Handle(LoginUserCommand request, CancellationToken cancellationToken)
+        public async Task<LoginUserQueryResult> Handle(LoginUserQuery request, CancellationToken cancellationToken)
         {
             var user = await userManager.FindByEmailAsync(request.Email);
 
@@ -52,7 +52,7 @@ namespace ApplicationSystem.Infrastructure.UseCases.User.Login
             var principal = await signInManager.CreateUserPrincipalAsync(user);
             var token = GenerateToken(principal.Claims.ToList());
 
-            return new LoginUserCommandResult
+            return new LoginUserQueryResult
             {
                 User = mapper.Map<UserDto>(user),
                 Token = token

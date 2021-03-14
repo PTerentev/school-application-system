@@ -1,25 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using MediatR;
 using Microsoft.AspNetCore.Http;
+using ApplicationSystem.Infrastructure.UseCases.Authority.Validation;
 
 namespace ApplicationSystem.Infrastructure.UseCases.Authority.SendReplyOnReview
 {
     /// <summary>
     /// Send reply on review command.
     /// </summary>
-    public class SendReplyOnReviewCommand : IRequest
+    [AuthorityValidation]
+    public class SendReplyOnReviewCommand : AuthorityRequestBase, IRequest
     {
-        /// <summary>
-        /// User Id.
-        /// </summary>
-        public int UserId { get; set; }
-
-        /// <summary>
-        /// Authority Id.
-        /// </summary>
-        [Required]
-        public int AuthorityId { get; set; }
-
         /// <summary>
         /// Application Id.
         /// </summary>

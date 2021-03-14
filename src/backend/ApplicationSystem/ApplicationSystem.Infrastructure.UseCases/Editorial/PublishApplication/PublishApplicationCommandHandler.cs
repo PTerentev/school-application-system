@@ -4,7 +4,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using ApplicationSystem.DataAccess;
-using ApplicationSystem.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using ApplicationSystem.Infrastructure.Common.Application;
 using ApplicationSystem.Infrastructure.Abstractions.Emails;

@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ApplicationSystem.DataAccess\ApplicationSystem.DataAccess.csproj" />
+    <ProjectReference Include="..\ApplicationSystem.Infrastructure.Abstractions\ApplicationSystem.Infrastructure.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>

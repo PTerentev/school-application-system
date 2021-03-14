@@ -14,6 +14,7 @@ using ApplicationSystem.Infrastructure.Common.Dtos;
 using ApplicationSystem.Infrastructure.Abstractions.Emails;
 using ApplicationSystem.Infrastructure.Common.Dtos.Emails;
 using ApplicationSystem.Infrastructure.UseCases.Common;
+using ApplicationSystem.Infrastructure.Abstractions.Authorization;
 
 namespace ApplicationSystem.Infrastructure.UseCases.Applicant.SendApplication
 {
@@ -23,6 +24,7 @@ namespace ApplicationSystem.Infrastructure.UseCases.Applicant.SendApplication
     internal class SendApplicationCommandHandler : IRequestHandler<SendApplicationCommand>
     {
         private readonly ApplicationDbContext dbContext;
+        private readonly IAccessUserPrincipalService accessUserPrincipalService;
         private readonly IAttachmentService attachmentService;
         private readonly IMapper mapper;
         private readonly IEmailRendererService emailRendererService;
@@ -38,8 +40,10 @@ namespace ApplicationSystem.Infrastructure.UseCases.Applicant.SendApplication
             IMapper mapper, 
             IEmailRendererService emailRendererService,
             ISmptService smptService,
-            UserManager<Domain.Entities.User> userManager)
+            UserManager<Domain.Entities.User> userManager,
+            IAccessUserPrincipalService accessUserPrincipalService)
         {
+            this.accessUserPrincipalService = accessUserPrincipalService;
             this.dbContext = dbContext;
             this.attachmentService = attachmentService;
             this.mapper = mapper;
@@ -51,11 +55,12 @@ namespace ApplicationSystem.Infrastructure.UseCases.Applicant.SendApplication
         /// <inheritdoc/>
         public async Task<Unit> Handle(SendApplicationCommand request, CancellationToken cancellationToken)
         {
+            var userId = accessUserPrincipalService.GetUserId();
             var application = new Application()
             {
                 Name = request.Name,
                 Description = request.Description,
-                CreatorUserId = request.UserId,
+                CreatorUserId = userId,
                 CreationDate = DateTime.UtcNow
             };
 

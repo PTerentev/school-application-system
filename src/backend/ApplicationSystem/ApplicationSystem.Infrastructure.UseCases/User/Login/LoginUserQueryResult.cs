@@ -3,9 +3,9 @@ using ApplicationSystem.Infrastructure.Common.Dtos;
 namespace ApplicationSystem.Infrastructure.UseCases.User.Login
 {
     /// <summary>
-    /// Login user command result.
+    /// Login user query result.
     /// </summary>
-    public class LoginUserCommandResult
+    public class LoginUserQueryResult
     {
         /// <summary>
         /// User.

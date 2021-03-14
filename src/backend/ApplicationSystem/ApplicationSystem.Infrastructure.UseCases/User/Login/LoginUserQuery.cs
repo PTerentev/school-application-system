@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 namespace ApplicationSystem.Infrastructure.UseCases.User.Login
 {
     /// <summary>
-    /// Login user command.
+    /// Login user query.
     /// </summary>
-    public class LoginUserCommand : IRequest<LoginUserCommandResult>
+    public class LoginUserQuery : IRequest<LoginUserQueryResult>
     {
         /// <summary>
         /// Email address.

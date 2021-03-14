@@ -4,7 +4,6 @@ using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Saritasa.Tools.Domain.Exceptions;
-using ApplicationSystem.Domain.Entities;
 using ApplicationSystem.Infrastructure.Common.Dtos;
 
 namespace ApplicationSystem.Infrastructure.UseCases.Admin.CreateUser

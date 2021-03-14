@@ -23,11 +23,6 @@ namespace ApplicationSystem.Infrastructure.UseCases.Applicant.SendApplication
         public string Description { get; set; }
 
         /// <summary>
-        /// Creator user Id.
-        /// </summary>
-        public int? UserId { get; set; }
-
-        /// <summary>
         /// Attachment files.
         /// </summary>
         public IFormFileCollection FormFiles { get; set; }

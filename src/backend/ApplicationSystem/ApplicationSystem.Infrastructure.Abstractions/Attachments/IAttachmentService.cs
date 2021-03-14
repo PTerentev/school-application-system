@@ -1,6 +1,5 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 using ApplicationSystem.Infrastructure.Common.Dtos.Attachments;
 
 namespace ApplicationSystem.Infrastructure.Abstractions.Attachments

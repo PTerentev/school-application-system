@@ -1,11 +1,13 @@
 ﻿using System.Text;
 using System.Threading.Tasks;
-using ApplicationSystem.Domain.Options;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using ApplicationSystem.Domain.Options;
+using ApplicationSystem.Infrastructure.Abstractions.Authorization;
+using ApplicationSystem.Infrastructure.Authorization;
 
 namespace ApplicationSystem.Web.Infrastructure.ServiceExtensions
 {
@@ -46,6 +48,8 @@ namespace ApplicationSystem.Web.Infrastructure.ServiceExtensions
                     return Task.CompletedTask;
                 };
             });
+
+            services.AddScoped<IAccessUserPrincipalService, AccessUserPrincipalService>();
 
             return services;
         }
