@@ -84,7 +84,7 @@ namespace ApplicationSystem.Infrastructure.UseCases.Applicant.SendApplication
             dbContext.Applications.Add(application);
             await dbContext.SaveChangesAsync(cancellationToken);
 
-            var editorialUsers = await userManager.GetUsersInRoleAsync(Role.EditorRole);
+            var editorialUsers = await userManager.GetUsersInRoleAsync(UserRoles.Editor.ToString());
             var emails = editorialUsers.Select(u => u.Email);
 
             await SendEmailsToEditorial(emails, mapper.Map<ApplicationInfoDto>(application), CancellationToken.None);

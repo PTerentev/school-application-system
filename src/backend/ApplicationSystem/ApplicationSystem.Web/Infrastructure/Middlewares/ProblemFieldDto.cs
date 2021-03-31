@@ -24,7 +24,7 @@ namespace ApplicationSystem.Infrastructure.Web.Infrastructure.Middlewares
         /// <summary>
         /// Problem field with no messages.
         /// </summary>
-        public static ProblemFieldDto Empty => new ProblemFieldDto(string.Empty, new string[0]);
+        public static ProblemFieldDto Empty => new ProblemFieldDto(string.Empty, Array.Empty<string>());
 
         /// <summary>
         /// Constructor.

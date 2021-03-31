@@ -28,7 +28,7 @@ namespace ApplicationSystem.Infrastructure.UseCases.User.GetInfo
         /// <inheritdoc/>
         public async Task<UserDto> Handle(GetUserInfoQuery request, CancellationToken cancellationToken)
         {
-            var user = await dbContext.Users.SingleAsync(u => u.Id == request.UserId);
+            var user = await dbContext.Users.SingleAsync(u => u.Id == request.UserId, cancellationToken);
             var userDto = mapper.Map<UserDto>(user);
 
             return userDto;

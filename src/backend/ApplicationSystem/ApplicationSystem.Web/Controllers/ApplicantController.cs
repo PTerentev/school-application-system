@@ -16,7 +16,7 @@ namespace ApplicationSystem.Web.Controllers
     /// </summary>
     [ApiController]
     [Route("api/applicant")]
-    public class ApplicantController : Controller
+    public class ApplicantController : ControllerBase
     {
         private readonly IMediator mediator;
 
@@ -32,7 +32,7 @@ namespace ApplicationSystem.Web.Controllers
         /// Get applications.
         /// </summary>
         [Authorize]
-        [HttpPost("get-applications")]
+        [HttpGet("get-applications")]
         public async Task<ICollection<ApplicationInfoDto>> GetApplications(CancellationToken cancellationToken)
         {
             return await mediator.Send(new GetApplicationsForApplicantQuery(), cancellationToken);
@@ -41,7 +41,7 @@ namespace ApplicationSystem.Web.Controllers
         /// <summary>
         /// Send application.
         /// </summary>
-        [HttpGet("send-application")]
+        [HttpPost("send-application")]
         public async Task<StatusCodeResult> SendApplication([FromBody] SendApplicationCommand sendApplicationCommand, CancellationToken cancellationToken)
         {
             await mediator.Send(sendApplicationCommand, cancellationToken);

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using ApplicationSystem.Domain.Entities;
 
 namespace ApplicationSystem.DataAccess
@@ -7,7 +8,15 @@ namespace ApplicationSystem.DataAccess
     /// <summary>
     /// Application database context.
     /// </summary>
-    public class ApplicationDbContext : IdentityDbContext<User, Role, int>
+    public class ApplicationDbContext : IdentityDbContext<
+        User,
+        Role,
+        int,
+        IdentityUserClaim<int>,
+        UserRole,
+        IdentityUserLogin<int>,
+        IdentityRoleClaim<int>,
+        IdentityUserToken<int>>
     {
         /// <summary>
         /// Constructor.
@@ -16,6 +25,11 @@ namespace ApplicationSystem.DataAccess
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> dbContextOptions) : base (dbContextOptions)
         {
         }
+
+        /// <summary>
+        /// User roles.
+        /// </summary>
+        public override DbSet<UserRole> UserRoles { get; set; }
 
         /// <summary>
         /// Applications.

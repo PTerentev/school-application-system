@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using ApplicationSystem.Domain.Options;
 using ApplicationSystem.Infrastructure.Abstractions.Authorization;
 using ApplicationSystem.Infrastructure.Authorization;
+using ApplicationSystem.Infrastructure.Common.Options;
 
 namespace ApplicationSystem.Web.Infrastructure.ServiceExtensions
 {
@@ -41,11 +41,13 @@ namespace ApplicationSystem.Web.Infrastructure.ServiceExtensions
                     ValidIssuer = jwtOptions.Issuer
                 };
 
-                options.Events = new JwtBearerEvents();
-                options.Events.OnAuthenticationFailed = context =>
+                options.Events = new JwtBearerEvents
                 {
-                    context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-                    return Task.CompletedTask;
+                    OnAuthenticationFailed = context =>
+                    {
+                        context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                        return Task.CompletedTask;
+                    }
                 };
             });
 

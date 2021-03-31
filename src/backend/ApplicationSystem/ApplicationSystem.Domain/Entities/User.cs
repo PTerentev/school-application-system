@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
 
@@ -16,6 +17,7 @@ namespace ApplicationSystem.Domain.Entities
         {
             Authorities = new List<Authority>();
             Applications = new List<Application>();
+            SecurityStamp = Guid.NewGuid().ToString();
         }
 
         /// <summary>
@@ -47,11 +49,11 @@ namespace ApplicationSystem.Domain.Entities
         /// <summary>
         /// Authorities.
         /// </summary>
-        public ICollection<Authority> Authorities { get; set; }
+        public virtual ICollection<Authority> Authorities { get; set; }
 
         /// <summary>
         /// Applications.
         /// </summary>
-        public ICollection<Application> Applications { get; set; }
+        public virtual ICollection<Application> Applications { get; set; }
     }
 }

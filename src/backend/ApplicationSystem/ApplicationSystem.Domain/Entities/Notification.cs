@@ -24,7 +24,7 @@ namespace ApplicationSystem.Domain.Entities
         /// To user.
         /// </summary>
         [Required]
-        public User ToUser { get; set; }
+        public virtual User ToUser { get; set; }
 
         /// <summary>
         /// Title.
@@ -50,7 +50,7 @@ namespace ApplicationSystem.Domain.Entities
         /// Application.
         /// </summary>
         [Required]
-        public Application Application { get; set; }
+        public virtual Application Application { get; set; }
 
         /// <summary>
         /// Creation date.

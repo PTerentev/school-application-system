@@ -1,4 +1,4 @@
-﻿namespace ApplicationSystem.Domain.Options
+﻿namespace ApplicationSystem.Infrastructure.Common.Options
 {
     /// <summary>
     /// JWT options.
@@ -6,7 +6,7 @@
     public class JwtOptions
     {
         /// <summary>
-        /// Name of the option.
+        /// Configuration section name.
         /// </summary>
         public const string Name = "JwtOptions";
 

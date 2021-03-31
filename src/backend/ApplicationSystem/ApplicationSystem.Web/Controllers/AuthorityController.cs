@@ -17,7 +17,7 @@ namespace ApplicationSystem.Web.Controllers
     [ApiController]
     [Authorize]
     [Route("api/authority")]
-    public class AuthorityController : Controller
+    public class AuthorityController : ControllerBase
     {
         private readonly IMediator mediator;
 

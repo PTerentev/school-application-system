@@ -60,7 +60,7 @@ namespace ApplicationSystem.Infrastructure.UseCases.Editorial.ResendToAuthority
             dbContext.Replies.Update(application.Reply);
             await dbContext.SaveChangesAsync(cancellationToken);
 
-            var authorities = await dbContext.Authorities.Where(a => a.Id == application.AuthorityId).SingleAsync();
+            var authorities = await dbContext.Authorities.Where(a => a.Id == application.AuthorityId).SingleAsync(CancellationToken.None);
             var emails = authorities.Users.Select(u => u.Email);
 
             await SendEmailsToAuthority(emails, mapper.Map<ApplicationInfoDto>(application), CancellationToken.None);

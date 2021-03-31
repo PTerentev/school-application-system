@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ApplicationSystem.Domain.Entities;
@@ -11,6 +10,7 @@ using ApplicationSystem.Infrastructure.UseCases.Editorial.GetApplications;
 using ApplicationSystem.Infrastructure.UseCases.Editorial.PublishApplication;
 using ApplicationSystem.Infrastructure.UseCases.Editorial.RejectApplication;
 using ApplicationSystem.Infrastructure.UseCases.Editorial.ResendToAuthority;
+using ApplicationSystem.Web.Infrastructure.Authorization;
 
 namespace ApplicationSystem.Web.Controllers
 {
@@ -19,8 +19,8 @@ namespace ApplicationSystem.Web.Controllers
     /// </summary>
     [ApiController]
     [Route("api/editorial")]
-    [Authorize(Roles = Role.EditorRole)]
-    public class EditorialController : Controller
+    [RoleBasedAuthorize(UserRoles.Editor)]
+    public class EditorialController : ControllerBase
     {
         private readonly IMediator mediator;
 

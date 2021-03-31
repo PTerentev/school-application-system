@@ -6,8 +6,8 @@
     public class AttachmentInfoDto
     {
         /// <summary>
-        /// File URL.
+        /// File key.
         /// </summary>
-        public string FileUrl { get; set; }
+        public string FileKey { get; set; }
     }
 }

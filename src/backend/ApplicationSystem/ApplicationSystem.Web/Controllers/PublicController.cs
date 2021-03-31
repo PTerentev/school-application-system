@@ -13,7 +13,7 @@ namespace ApplicationSystem.Web.Controllers
     /// </summary>
     [ApiController]
     [Route("api/public")]
-    public class PublicController : Controller
+    public class PublicController : ControllerBase
     {
         private readonly IMediator mediator;
 
@@ -29,7 +29,7 @@ namespace ApplicationSystem.Web.Controllers
         /// Get published applications.
         /// </summary>
         [HttpGet("get-published-applications")]
-        public async Task<PagedListMetadataDto<ApplicationDto>> GetPublishedApplications(GetPublishedApplicationsQuery GetPublishedApplicationsQuery, CancellationToken cancellationToken)
+        public async Task<PagedListMetadataDto<ApplicationDto>> GetPublishedApplications([FromQuery] GetPublishedApplicationsQuery GetPublishedApplicationsQuery, CancellationToken cancellationToken)
         {
             return await mediator.Send(GetPublishedApplicationsQuery, cancellationToken);
         }

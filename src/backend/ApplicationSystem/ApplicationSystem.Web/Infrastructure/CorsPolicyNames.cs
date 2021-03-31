@@ -1,4 +1,4 @@
-﻿namespace ApplicationSystem.Infrastructure.Web.Infrastructure
+﻿namespace ApplicationSystem.Web.Infrastructure
 {
     /// <summary>
     /// CORS policy names.
@@ -9,5 +9,10 @@
         /// Dev CORS policy name.
         /// </summary>
         public const string DevCorsPolicyName = "DevCorsPolicy";
+
+        /// <summary>
+        /// Dev CORS policy name.
+        /// </summary>
+        public const string ProductionPolicyName = "ProdCorsPolicy";
     }
 }

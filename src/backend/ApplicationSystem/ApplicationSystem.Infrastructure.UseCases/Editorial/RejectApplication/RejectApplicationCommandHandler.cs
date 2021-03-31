@@ -56,7 +56,7 @@ namespace ApplicationSystem.Infrastructure.UseCases.Editorial.RejectApplication
 
             if (application.CreatorUserId != null)
             {
-                var user = await dbContext.Users.Where(u => u.Id == application.CreatorUserId).SingleAsync();
+                var user = await dbContext.Users.Where(u => u.Id == application.CreatorUserId).SingleAsync(CancellationToken.None);
 
                 var applicationInfo = mapper.Map<ApplicationInfoDto>(application);
                 await SendEmailToUserAsync(user.Email, applicationInfo, CancellationToken.None);

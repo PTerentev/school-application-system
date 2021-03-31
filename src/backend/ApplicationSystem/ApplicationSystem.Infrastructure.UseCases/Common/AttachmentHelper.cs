@@ -38,7 +38,7 @@ namespace ApplicationSystem.Infrastructure.UseCases.Common
                 var attachment = new Attachment()
                 {
                     ContentType = attachmentDto.ContentType,
-                    FileUrl = fileInfo.FileUrl
+                    FileKey = fileInfo.FileKey
                 };
 
                 attachments.Add(attachment);

@@ -1,7 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ApplicationSystem.Domain.Entities;
@@ -9,6 +8,7 @@ using ApplicationSystem.Infrastructure.Common.Dtos;
 using ApplicationSystem.Infrastructure.UseCases.Admin.AddUserToAuthority;
 using ApplicationSystem.Infrastructure.UseCases.Admin.AddUserToRole;
 using ApplicationSystem.Infrastructure.UseCases.Admin.CreateUser;
+using ApplicationSystem.Web.Infrastructure.Authorization;
 
 namespace ApplicationSystem.Web.Controllers
 {
@@ -17,8 +17,8 @@ namespace ApplicationSystem.Web.Controllers
     /// </summary>
     [ApiController]
     [Route("api/admin")]
-    [Authorize(Roles = Role.AdminRole)]
-    public class AdminController : Controller
+    [RoleBasedAuthorize(UserRoles.Admin)]
+    public class AdminController : ControllerBase
     {
         private readonly IMediator mediator;
 

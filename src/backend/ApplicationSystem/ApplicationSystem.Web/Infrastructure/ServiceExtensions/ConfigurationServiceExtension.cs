@@ -1,6 +1,6 @@
-﻿using ApplicationSystem.Domain.Options;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ApplicationSystem.Infrastructure.Common.Options;
 
 namespace ApplicationSystem.Web.Infrastructure.ServiceExtensions
 {
@@ -15,6 +15,7 @@ namespace ApplicationSystem.Web.Infrastructure.ServiceExtensions
         public static IServiceCollection AddConfigurationOptions(this IServiceCollection services, IConfiguration configuration)
         {
             services.Configure<JwtOptions>(configuration.GetSection(JwtOptions.Name));
+            services.Configure<AdminAccountOptions>(configuration.GetSection(AdminAccountOptions.Name));
 
             return services;
         }

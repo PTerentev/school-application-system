@@ -11,7 +11,7 @@ namespace ApplicationSystem.Web.Controllers
 {
     [ApiController]
     [Route("api/user")]
-    public class UserController
+    public class UserController : ControllerBase
     {
         private readonly IMediator mediator;
 
@@ -26,7 +26,7 @@ namespace ApplicationSystem.Web.Controllers
         /// <summary>
         /// Get user info.
         /// </summary>
-        [HttpGet("get-info")]
+        [HttpPost("get-info")]
         public async Task<UserDto> GetUserInfo(GetUserInfoQuery getUserInfoQuery, CancellationToken cancellationToken)
         {
             return await mediator.Send(getUserInfoQuery, cancellationToken);
@@ -35,7 +35,7 @@ namespace ApplicationSystem.Web.Controllers
         /// <summary>
         /// Login user.
         /// </summary>
-        [HttpGet("login")]
+        [HttpPost("login")]
         public async Task<LoginUserQueryResult> Login([FromBody] LoginUserQuery loginUserQuery, CancellationToken cancellationToken)
         {
             return await mediator.Send(loginUserQuery, cancellationToken);
@@ -44,7 +44,7 @@ namespace ApplicationSystem.Web.Controllers
         /// <summary>
         /// Register user.
         /// </summary>
-        [HttpGet("register")]
+        [HttpPost("register")]
         public async Task<UserDto> Register([FromBody] RegisterUserCommand registerUserCommand, CancellationToken cancellationToken)
         {
             return await mediator.Send(registerUserCommand, cancellationToken);
