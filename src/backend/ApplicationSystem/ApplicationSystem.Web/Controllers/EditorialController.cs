@@ -6,10 +6,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ApplicationSystem.Domain.Entities;
 using ApplicationSystem.Infrastructure.Common.Dtos;
-using ApplicationSystem.Infrastructure.UseCases.Editorial.GetApplications;
-using ApplicationSystem.Infrastructure.UseCases.Editorial.PublishApplication;
-using ApplicationSystem.Infrastructure.UseCases.Editorial.RejectApplication;
-using ApplicationSystem.Infrastructure.UseCases.Editorial.ResendToAuthority;
+using ApplicationSystem.UseCases.Editorial.GetApplications;
+using ApplicationSystem.UseCases.Editorial.PublishApplication;
+using ApplicationSystem.UseCases.Editorial.RejectApplication;
+using ApplicationSystem.UseCases.Editorial.ResendToAuthority;
 using ApplicationSystem.Web.Infrastructure.Authorization;
 
 namespace ApplicationSystem.Web.Controllers

@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ApplicationSystem.Infrastructure.Common.Dtos;
-using ApplicationSystem.Infrastructure.UseCases.Authority.GetApplications;
-using ApplicationSystem.Infrastructure.UseCases.Authority.SendReplyOnReview;
+using ApplicationSystem.UseCases.Authority.GetApplications;
+using ApplicationSystem.UseCases.Authority.SendReplyOnReview;
 
 namespace ApplicationSystem.Web.Controllers
 {

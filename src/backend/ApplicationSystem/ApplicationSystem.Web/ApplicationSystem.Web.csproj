@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ApplicationSystem.Infrastructure.UseCases\ApplicationSystem.Infrastructure.UseCases.csproj" />
+    <ProjectReference Include="..\ApplicationSystem.UseCases\ApplicationSystem.UseCases.csproj" />
     <ProjectReference Include="..\ApplicationSystem.Infrastructure\ApplicationSystem.Infrastructure.csproj" />
   </ItemGroup>
 

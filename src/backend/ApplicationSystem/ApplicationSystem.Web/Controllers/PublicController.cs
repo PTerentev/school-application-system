@@ -4,7 +4,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Saritasa.Tools.Common.Pagination;
 using ApplicationSystem.Infrastructure.Common.Dtos;
-using ApplicationSystem.Infrastructure.UseCases.Public.GetPublishedApplications;
+using ApplicationSystem.UseCases.Public.GetPublishedApplications;
 
 namespace ApplicationSystem.Web.Controllers
 {

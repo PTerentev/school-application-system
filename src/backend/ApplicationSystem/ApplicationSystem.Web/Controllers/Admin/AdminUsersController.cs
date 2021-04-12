@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ApplicationSystem.Domain.Entities;
 using ApplicationSystem.Infrastructure.Common.Dtos;
-using ApplicationSystem.Infrastructure.UseCases.Admin.AddUserToAuthority;
-using ApplicationSystem.Infrastructure.UseCases.Admin.AddUserToRole;
-using ApplicationSystem.Infrastructure.UseCases.Admin.CreateUser;
+using ApplicationSystem.UseCases.Admin.AddUserToAuthority;
+using ApplicationSystem.UseCases.Admin.AddUserToRole;
+using ApplicationSystem.UseCases.Admin.CreateUser;
 using ApplicationSystem.Web.Infrastructure.Authorization;
 
 namespace ApplicationSystem.Web.Controllers.Admin

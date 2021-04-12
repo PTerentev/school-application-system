@@ -5,7 +5,7 @@ using ApplicationSystem.Infrastructure.Abstractions.Emails;
 using ApplicationSystem.Infrastructure.Attachments;
 using ApplicationSystem.Infrastructure.Authorization;
 using ApplicationSystem.Infrastructure.Emails;
-using ApplicationSystem.Infrastructure.UseCases;
+using ApplicationSystem.UseCases;
 using MediatR;
 
 namespace ApplicationSystem.Web.Infrastructure.ServiceExtensions

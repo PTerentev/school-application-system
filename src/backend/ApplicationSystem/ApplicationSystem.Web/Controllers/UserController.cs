@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using ApplicationSystem.Infrastructure.Common.Dtos;
-using ApplicationSystem.Infrastructure.UseCases.User.GetInfo;
-using ApplicationSystem.Infrastructure.UseCases.User.Login;
-using ApplicationSystem.Infrastructure.UseCases.User.Register;
+using ApplicationSystem.UseCases.User.GetInfo;
+using ApplicationSystem.UseCases.User.Login;
+using ApplicationSystem.UseCases.User.Register;
 
 namespace ApplicationSystem.Web.Controllers
 {

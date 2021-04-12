@@ -4,8 +4,8 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ApplicationSystem.Domain.Entities;
-using ApplicationSystem.Infrastructure.UseCases.Admin.CreateAuthority;
-using ApplicationSystem.Infrastructure.UseCases.Admin.RemoveAuthority;
+using ApplicationSystem.UseCases.Admin.CreateAuthority;
+using ApplicationSystem.UseCases.Admin.RemoveAuthority;
 using ApplicationSystem.Web.Infrastructure.Authorization;
 
 namespace ApplicationSystem.Web.Controllers.Admin
