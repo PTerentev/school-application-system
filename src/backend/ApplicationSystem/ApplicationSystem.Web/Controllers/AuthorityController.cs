@@ -32,7 +32,7 @@ namespace ApplicationSystem.Web.Controllers
         /// <summary>
         /// Get applications.
         /// </summary>
-        [HttpGet("get-applications")]
+        [HttpGet("applications/all")]
         public async Task<ICollection<ApplicationDto>> GetApplications(CancellationToken cancellationToken)
         {
             return await mediator.Send(new GetApplicationsForAuthorityQuery(), cancellationToken);
@@ -41,10 +41,16 @@ namespace ApplicationSystem.Web.Controllers
         /// <summary>
         /// Send reply on review.
         /// </summary>
-        [HttpPost("send-reply-on-review")]
-        public async Task<StatusCodeResult> SendReplyOnReview([FromBody] SendReplyOnReviewCommand sendReplyOnReviewCommand, CancellationToken cancellationToken)
+        [HttpPost("applications/{applicationId}/reply")]
+        public async Task<StatusCodeResult> SendReplyOnReview(int applicationId, [FromBody] string replyMessage, CancellationToken cancellationToken)
         {
-            await mediator.Send(sendReplyOnReviewCommand, cancellationToken);
+            var command = new SendReplyOnReviewCommand()
+            {
+                ApplicationId = applicationId,
+                ReplyMessage = replyMessage
+            };
+
+            await mediator.Send(command, cancellationToken);
             return StatusCode(StatusCodes.Status201Created);
         }
     }

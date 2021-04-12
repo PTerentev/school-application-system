@@ -32,7 +32,7 @@ namespace ApplicationSystem.Web.Controllers
         /// Get applications.
         /// </summary>
         [Authorize]
-        [HttpGet("get-applications")]
+        [HttpGet("applications/all")]
         public async Task<ICollection<ApplicationInfoDto>> GetApplications(CancellationToken cancellationToken)
         {
             return await mediator.Send(new GetApplicationsForApplicantQuery(), cancellationToken);
@@ -41,7 +41,7 @@ namespace ApplicationSystem.Web.Controllers
         /// <summary>
         /// Send application.
         /// </summary>
-        [HttpPost("send-application")]
+        [HttpPost("applications")]
         public async Task<StatusCodeResult> SendApplication([FromBody] SendApplicationCommand sendApplicationCommand, CancellationToken cancellationToken)
         {
             await mediator.Send(sendApplicationCommand, cancellationToken);

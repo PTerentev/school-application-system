@@ -43,7 +43,7 @@ namespace ApplicationSystem.Infrastructure.UseCases.Authority.SendReplyOnReview
 
             var reply = application.Reply;
             reply.Application = application;
-            reply.Text = request.Text;
+            reply.Text = request.ReplyMessage;
             reply.LastChangeDate = DateTime.UtcNow;
 
             if (request.FormFiles != null)

@@ -28,7 +28,7 @@ namespace ApplicationSystem.Web.Controllers
         /// <summary>
         /// Get published applications.
         /// </summary>
-        [HttpGet("get-published-applications")]
+        [HttpGet("applications/published")]
         public async Task<PagedListMetadataDto<ApplicationDto>> GetPublishedApplications([FromQuery] GetPublishedApplicationsQuery GetPublishedApplicationsQuery, CancellationToken cancellationToken)
         {
             return await mediator.Send(GetPublishedApplicationsQuery, cancellationToken);

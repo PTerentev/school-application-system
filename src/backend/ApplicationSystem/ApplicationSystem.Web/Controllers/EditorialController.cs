@@ -35,7 +35,7 @@ namespace ApplicationSystem.Web.Controllers
         /// <summary>
         /// Get applications.
         /// </summary>
-        [HttpGet("get-applications")]
+        [HttpGet("applications/all")]
         public async Task<ICollection<ApplicationDto>> GetApplications(CancellationToken cancellationToken)
         {
             return await mediator.Send(new GetApplicationsQuery(), cancellationToken);
@@ -44,30 +44,48 @@ namespace ApplicationSystem.Web.Controllers
         /// <summary>
         /// Publish application.
         /// </summary>
-        [HttpPost("publish-application")]
-        public async Task<StatusCodeResult> PublishApplication([FromBody] PublishApplicationCommand publishApplicationCommand, CancellationToken cancellationToken)
+        [HttpPost("applications/{applicationId}/publish")]
+        public async Task<StatusCodeResult> PublishApplication(int applicationId, CancellationToken cancellationToken)
         {
-            await mediator.Send(publishApplicationCommand, cancellationToken);
+            var command = new PublishApplicationCommand()
+            {
+                ApplicationId = applicationId
+            };
+
+            await mediator.Send(command, cancellationToken);
+
             return StatusCode(StatusCodes.Status200OK);
         }
 
         /// <summary>
         /// Reject application.
         /// </summary>
-        [HttpPost("reject-application")]
-        public async Task<StatusCodeResult> RejectApplication([FromBody] RejectApplicationCommand rejectApplicationCommand, CancellationToken cancellationToken)
+        [HttpPost("applications/{applicationId}/reject")]
+        public async Task<StatusCodeResult> RejectApplication(int applicationId, [FromBody] string rejectComments, CancellationToken cancellationToken)
         {
-            await mediator.Send(rejectApplicationCommand, cancellationToken);
+            var command = new RejectApplicationCommand()
+            {
+                ApplicationId = applicationId,
+                RejectComments = rejectComments
+            };
+
+            await mediator.Send(command, cancellationToken);
             return StatusCode(StatusCodes.Status200OK);
         }
 
         /// <summary>
         /// Resend to authority.
         /// </summary>
-        [HttpPost("resend-to-authority")]
-        public async Task<StatusCodeResult> ResendToAuthority([FromBody] ResendToAuthorityCommand resendToAuthorityCommand, CancellationToken cancellationToken)
+        [HttpPost("applications/{applicationId}/resend")]
+        public async Task<StatusCodeResult> ResendToAuthority(int applicationId, [FromBody] string editComments, CancellationToken cancellationToken)
         {
-            await mediator.Send(resendToAuthorityCommand, cancellationToken);
+            var command = new ResendToAuthorityCommand()
+            {
+                ApplicationId = applicationId,
+                EditComments = editComments
+            };
+
+            await mediator.Send(command, cancellationToken);
             return StatusCode(StatusCodes.Status200OK);
         }
     }

@@ -9,6 +9,9 @@ using ApplicationSystem.Infrastructure.UseCases.User.Register;
 
 namespace ApplicationSystem.Web.Controllers
 {
+    /// <summary>
+    /// User controller.
+    /// </summary>
     [ApiController]
     [Route("api/user")]
     public class UserController : ControllerBase
@@ -26,10 +29,15 @@ namespace ApplicationSystem.Web.Controllers
         /// <summary>
         /// Get user info.
         /// </summary>
-        [HttpPost("get-info")]
-        public async Task<UserDto> GetUserInfo(GetUserInfoQuery getUserInfoQuery, CancellationToken cancellationToken)
+        [HttpGet("{UserId}")]
+        public async Task<UserDto> GetUserInfo(int userId, CancellationToken cancellationToken)
         {
-            return await mediator.Send(getUserInfoQuery, cancellationToken);
+            var query = new GetUserInfoQuery()
+            {
+                UserId = userId
+            };
+
+            return await mediator.Send(query, cancellationToken);
         }
 
         /// <summary>

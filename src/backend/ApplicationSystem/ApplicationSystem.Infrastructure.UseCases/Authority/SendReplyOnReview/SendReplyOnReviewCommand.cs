@@ -21,7 +21,7 @@ namespace ApplicationSystem.Infrastructure.UseCases.Authority.SendReplyOnReview
         /// Text.
         /// </summary>
         [Required]
-        public string Text { get; set; }
+        public string ReplyMessage { get; set; }
 
         /// <summary>
         /// Attachment files.

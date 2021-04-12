@@ -10,22 +10,22 @@ using ApplicationSystem.Infrastructure.UseCases.Admin.AddUserToRole;
 using ApplicationSystem.Infrastructure.UseCases.Admin.CreateUser;
 using ApplicationSystem.Web.Infrastructure.Authorization;
 
-namespace ApplicationSystem.Web.Controllers
+namespace ApplicationSystem.Web.Controllers.Admin
 {
     /// <summary>
-    /// Admin controller.
+    /// Admin controller for user managing.
     /// </summary>
     [ApiController]
-    [Route("api/admin")]
+    [Route("api/admin/users")]
     [RoleBasedAuthorize(UserRoles.Admin)]
-    public class AdminController : ControllerBase
+    public class AdminUsersController : ControllerBase
     {
         private readonly IMediator mediator;
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        public AdminController(IMediator mediator)
+        public AdminUsersController(IMediator mediator)
         {
             this.mediator = mediator;
         }
@@ -33,27 +33,39 @@ namespace ApplicationSystem.Web.Controllers
         /// <summary>
         /// Add user to authority.
         /// </summary>
-        [HttpPost("add-user-to-authority")]
-        public async Task<StatusCodeResult> AddUserToAuthority([FromBody] AddUserToAuthorityCommand addUserToAuthorityCommand, CancellationToken cancellationToken)
+        [HttpPost("{userId}/authority")]
+        public async Task<StatusCodeResult> AddUserToAuthority(int userId, [FromBody] int authorityId, CancellationToken cancellationToken)
         {
-            await mediator.Send(addUserToAuthorityCommand, cancellationToken);
+            var command = new AddUserToAuthorityCommand()
+            {
+                UserId = userId,
+                AuthorityId = authorityId
+            };
+
+            await mediator.Send(command, cancellationToken);
             return StatusCode(StatusCodes.Status200OK);
         }
 
         /// <summary>
         /// Add user to authority.
         /// </summary>
-        [HttpPost("add-user-to-role")]
-        public async Task<StatusCodeResult> AddUserToRole([FromBody] AddUserToRoleCommand addUserToRoleCommand, CancellationToken cancellationToken)
+        [HttpPost("{userId}/role")]
+        public async Task<StatusCodeResult> AddUserToRole(int userId, [FromBody] string role, CancellationToken cancellationToken)
         {
-            await mediator.Send(addUserToRoleCommand, cancellationToken);
+            var command = new AddUserToRoleCommand()
+            {
+                UserId = userId,
+                Role = role
+            };
+
+            await mediator.Send(command, cancellationToken);
             return StatusCode(StatusCodes.Status200OK);
         }
 
         /// <summary>
         /// Add user to authority.
         /// </summary>
-        [HttpPost("create-user")]
+        [HttpPost()]
         public async Task<UserDto> CreateUserCommand([FromBody] CreateUserCommand createUserCommand, CancellationToken cancellationToken)
         {
             return await mediator.Send(createUserCommand, cancellationToken);
