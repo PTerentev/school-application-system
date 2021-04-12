@@ -23,6 +23,7 @@ namespace ApplicationSystem.Web.Controllers.Admin
         /// <summary>
         /// Constructor.
         /// </summary>
+        /// <param name="mediator">Mediator.</param>
         public AdminAuthorityController(IMediator mediator)
         {
             this.mediator = mediator;

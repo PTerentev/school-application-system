@@ -23,6 +23,7 @@ namespace ApplicationSystem.Web.Controllers
         /// <summary>
         /// Constructor.
         /// </summary>
+        /// <param name="mediator">Mediator.</param>
         public ApplicantController(IMediator mediator)
         {
             this.mediator = mediator;
@@ -42,7 +43,7 @@ namespace ApplicationSystem.Web.Controllers
         /// Send application.
         /// </summary>
         [HttpPost("applications")]
-        public async Task<StatusCodeResult> SendApplication([FromBody] SendApplicationCommand sendApplicationCommand, CancellationToken cancellationToken)
+        public async Task<StatusCodeResult> SendApplication([FromForm] SendApplicationCommand sendApplicationCommand, CancellationToken cancellationToken)
         {
             await mediator.Send(sendApplicationCommand, cancellationToken);
             return StatusCode(StatusCodes.Status201Created);

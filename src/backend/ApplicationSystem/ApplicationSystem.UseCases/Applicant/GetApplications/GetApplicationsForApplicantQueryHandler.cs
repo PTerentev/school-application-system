@@ -34,7 +34,7 @@ namespace ApplicationSystem.UseCases.Applicant.GetApplications
         public async Task<ICollection<ApplicationInfoDto>> Handle(GetApplicationsForApplicantQuery request, CancellationToken cancellationToken)
         {
             var userId = accessUserPrincipalService.GetUserId();
-            var query = dbContext.Applications.Where(a => a.CreatorUserId != null && a.CreatorUserId == userId);
+            var query = dbContext.Applications.Where(a => a.CreatorUserId == userId);
             return await mapper.ProjectTo<ApplicationInfoDto>(query).ToListAsync(cancellationToken);
         }
     }

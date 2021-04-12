@@ -8,7 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using ApplicationSystem.DataAccess;
 using ApplicationSystem.Infrastructure.Abstractions.Attachments;
 using ApplicationSystem.Infrastructure.Common.Application;
-using ApplicationSystem.UseCases.Common;
+using ApplicationSystem.Infrastructure.Common.Dtos.Attachments;
+using ApplicationSystem.UseCases.Attachments.SaveAttachment;
+using System.Collections.Generic;
 
 namespace ApplicationSystem.UseCases.Authority.SendReplyOnReview
 {
@@ -19,16 +21,19 @@ namespace ApplicationSystem.UseCases.Authority.SendReplyOnReview
     {
         private readonly ApplicationDbContext dbContext;
         private readonly IMapper mapper;
-        private readonly IAttachmentService attachmentService;
+        private readonly IMediator mediator;
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        public SendReplyOnReviewCommandHandler(ApplicationDbContext dbContext, IMapper mapper, IAttachmentService attachmentService)
+        public SendReplyOnReviewCommandHandler(
+            ApplicationDbContext dbContext,
+            IMapper mapper,
+            IMediator mediator)
         {
             this.dbContext = dbContext;
             this.mapper = mapper;
-            this.attachmentService = attachmentService;
+            this.mediator = mediator;
         }
 
         /// <inheritdoc/>
@@ -48,15 +53,16 @@ namespace ApplicationSystem.UseCases.Authority.SendReplyOnReview
 
             if (request.FormFiles != null)
             {
-                var attachments = await AttachmentHelper.GenerateAttachmentsAsync(
-                    request.FormFiles,
-                    attachmentService,
-                    mapper,
-                    cancellationToken
-                    );
+                var attachmentDtos = mapper.Map<IEnumerable<AttachmentDto>>(request.FormFiles);
 
-                reply.Attachments = attachments;
-                dbContext.Attachments.AddRange(attachments);
+                var attachments = await mediator.Send(
+                    new SaveAttachmentCommand()
+                    {
+                        Attachments = attachmentDtos
+                    },
+                    cancellationToken);
+
+                reply.Attachments = attachments.ToList();
             }
 
             application.Reply = reply;

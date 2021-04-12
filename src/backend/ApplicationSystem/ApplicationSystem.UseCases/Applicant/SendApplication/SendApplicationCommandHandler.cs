@@ -13,8 +13,9 @@ using ApplicationSystem.Infrastructure.Abstractions.Attachments;
 using ApplicationSystem.Infrastructure.Common.Dtos;
 using ApplicationSystem.Infrastructure.Abstractions.Emails;
 using ApplicationSystem.Infrastructure.Common.Dtos.Emails;
-using ApplicationSystem.UseCases.Common;
 using ApplicationSystem.Infrastructure.Abstractions.Authorization;
+using ApplicationSystem.UseCases.Attachments.SaveAttachment;
+using ApplicationSystem.Infrastructure.Common.Dtos.Attachments;
 
 namespace ApplicationSystem.UseCases.Applicant.SendApplication
 {
@@ -30,6 +31,7 @@ namespace ApplicationSystem.UseCases.Applicant.SendApplication
         private readonly IEmailRendererService emailRendererService;
         private readonly ISmptService smptService;
         private readonly UserManager<Domain.Entities.User> userManager;
+        private readonly IMediator mediator;
 
         /// <summary>
         /// Constructor.
@@ -41,7 +43,8 @@ namespace ApplicationSystem.UseCases.Applicant.SendApplication
             IEmailRendererService emailRendererService,
             ISmptService smptService,
             UserManager<Domain.Entities.User> userManager,
-            IAccessUserPrincipalService accessUserPrincipalService)
+            IAccessUserPrincipalService accessUserPrincipalService,
+            IMediator mediator)
         {
             this.accessUserPrincipalService = accessUserPrincipalService;
             this.dbContext = dbContext;
@@ -50,6 +53,7 @@ namespace ApplicationSystem.UseCases.Applicant.SendApplication
             this.emailRendererService = emailRendererService;
             this.smptService = smptService;
             this.userManager = userManager;
+            this.mediator = mediator;
         }
 
         /// <inheritdoc/>
@@ -66,15 +70,16 @@ namespace ApplicationSystem.UseCases.Applicant.SendApplication
 
             if (request.FormFiles != null)
             {
-                var attachments = await AttachmentHelper.GenerateAttachmentsAsync(
-                    request.FormFiles, 
-                    attachmentService,
-                    mapper,
-                    cancellationToken
-                    );
+                var attachmentDtos = mapper.Map<IEnumerable<AttachmentDto>>(request.FormFiles);
 
-                dbContext.Attachments.AddRange(attachments);
-                application.Attachments = attachments;
+                var attachments = await mediator.Send(
+                    new SaveAttachmentCommand()
+                    {
+                        Attachments = attachmentDtos
+                    },
+                    cancellationToken);
+
+                application.Attachments = attachments.ToList();
             }
 
             var reply = new Reply();

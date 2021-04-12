@@ -24,6 +24,7 @@ namespace ApplicationSystem.Web.Controllers
         /// <summary>
         /// Constructor.
         /// </summary>
+        /// <param name="mediator">Mediator.</param>
         public AuthorityController(IMediator mediator)
         {
             this.mediator = mediator;
@@ -42,12 +43,13 @@ namespace ApplicationSystem.Web.Controllers
         /// Send reply on review.
         /// </summary>
         [HttpPost("applications/{applicationId}/reply")]
-        public async Task<StatusCodeResult> SendReplyOnReview(int applicationId, [FromBody] string replyMessage, CancellationToken cancellationToken)
+        public async Task<StatusCodeResult> SendReplyOnReview(int applicationId, [FromForm] string replyMessage, [FromForm] IFormFileCollection formFiles, CancellationToken cancellationToken)
         {
             var command = new SendReplyOnReviewCommand()
             {
                 ApplicationId = applicationId,
-                ReplyMessage = replyMessage
+                ReplyMessage = replyMessage,
+                FormFiles = formFiles
             };
 
             await mediator.Send(command, cancellationToken);

@@ -27,6 +27,7 @@ namespace ApplicationSystem.Web.Controllers
         /// <summary>
         /// Constructor.
         /// </summary>
+        /// <param name="mediator">Mediator.</param>
         public EditorialController(IMediator mediator)
         {
             this.mediator = mediator;
