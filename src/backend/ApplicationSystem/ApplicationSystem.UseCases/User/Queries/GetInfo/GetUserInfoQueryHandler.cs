@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
@@ -28,10 +29,8 @@ namespace ApplicationSystem.UseCases.User.GetInfo
         /// <inheritdoc/>
         public async Task<UserDto> Handle(GetUserInfoQuery request, CancellationToken cancellationToken)
         {
-            var user = await dbContext.Users.SingleAsync(u => u.Id == request.UserId, cancellationToken);
-            var userDto = mapper.Map<UserDto>(user);
-
-            return userDto;
+            var query = dbContext.Users.Where(u => u.Id == request.UserId);
+            return await mapper.ProjectTo<UserDto>(query).SingleAsync(cancellationToken);
         }
     }
 }
