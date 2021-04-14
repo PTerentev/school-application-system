@@ -9,6 +9,7 @@ using ApplicationSystem.UseCases.Admin.AddUserToAuthority;
 using ApplicationSystem.UseCases.Admin.AddUserToRole;
 using ApplicationSystem.UseCases.Admin.CreateUser;
 using ApplicationSystem.Web.Infrastructure.Authorization;
+using ApplicationSystem.Web.Models;
 
 namespace ApplicationSystem.Web.Controllers.Admin
 {
@@ -32,31 +33,15 @@ namespace ApplicationSystem.Web.Controllers.Admin
         }
 
         /// <summary>
-        /// Add user to authority.
-        /// </summary>
-        [HttpPost("{userId}/authority")]
-        public async Task<StatusCodeResult> AddUserToAuthority(int userId, [FromBody] int authorityId, CancellationToken cancellationToken)
-        {
-            var command = new AddUserToAuthorityCommand()
-            {
-                UserId = userId,
-                AuthorityId = authorityId
-            };
-
-            await mediator.Send(command, cancellationToken);
-            return StatusCode(StatusCodes.Status200OK);
-        }
-
-        /// <summary>
-        /// Add user to authority.
+        /// Add user to role.
         /// </summary>
         [HttpPost("{userId}/role")]
-        public async Task<StatusCodeResult> AddUserToRole(int userId, [FromBody] string role, CancellationToken cancellationToken)
+        public async Task<StatusCodeResult> AddUserToRole(int userId, [FromBody] AddUserToRoleModel model, CancellationToken cancellationToken)
         {
             var command = new AddUserToRoleCommand()
             {
                 UserId = userId,
-                Role = role
+                Role = model.Role
             };
 
             await mediator.Send(command, cancellationToken);
@@ -66,7 +51,7 @@ namespace ApplicationSystem.Web.Controllers.Admin
         /// <summary>
         /// Add user to authority.
         /// </summary>
-        [HttpPost()]
+        [HttpPost]
         public async Task<UserDto> CreateUserCommand([FromBody] CreateUserCommand createUserCommand, CancellationToken cancellationToken)
         {
             return await mediator.Send(createUserCommand, cancellationToken);

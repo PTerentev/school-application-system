@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +8,10 @@ using ApplicationSystem.Domain.Entities;
 using ApplicationSystem.UseCases.Admin.CreateAuthority;
 using ApplicationSystem.UseCases.Admin.RemoveAuthority;
 using ApplicationSystem.Web.Infrastructure.Authorization;
+using ApplicationSystem.UseCases.Authority.Queries.GetAllAuthoritiesQuery;
+using ApplicationSystem.UseCases.Authority.Dtos;
+using ApplicationSystem.Web.Models;
+using ApplicationSystem.UseCases.Admin.AddUserToAuthority;
 
 namespace ApplicationSystem.Web.Controllers.Admin
 {
@@ -30,6 +35,15 @@ namespace ApplicationSystem.Web.Controllers.Admin
         }
 
         /// <summary>
+        /// Get authorities.
+        /// </summary>
+        [HttpGet]
+        public async Task<IEnumerable<AuthorityDto>> GetAuthorities(CancellationToken cancellationToken)
+        {
+            return await mediator.Send(new GetAllAuthoritiesQuery(), cancellationToken);
+        }
+
+        /// <summary>
         /// Remove authority.
         /// </summary>
         [HttpDelete("{authorityId}")]
@@ -37,6 +51,22 @@ namespace ApplicationSystem.Web.Controllers.Admin
         {
             var command = new RemoveAuthorityCommand()
             {
+                AuthorityId = authorityId
+            };
+
+            await mediator.Send(command, cancellationToken);
+            return StatusCode(StatusCodes.Status200OK);
+        }
+
+        /// <summary>
+        /// Add user to authority.
+        /// </summary>
+        [HttpPost("{authorityId}/user")]
+        public async Task<StatusCodeResult> AddUserToAuthority(int authorityId, [FromBody] AddUserToAuthorityModel model, CancellationToken cancellationToken)
+        {
+            var command = new AddUserToAuthorityCommand()
+            {
+                UserId = model.UserId.Value,
                 AuthorityId = authorityId
             };
 

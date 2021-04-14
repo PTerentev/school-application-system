@@ -5,8 +5,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using ApplicationSystem.Infrastructure.Abstractions.Authorization;
-using ApplicationSystem.Infrastructure.Authorization;
 using ApplicationSystem.Infrastructure.Common.Options;
 
 namespace ApplicationSystem.Web.Infrastructure.ServiceExtensions
@@ -50,8 +48,6 @@ namespace ApplicationSystem.Web.Infrastructure.ServiceExtensions
                     }
                 };
             });
-
-            services.AddScoped<IAccessUserPrincipalService, AccessUserPrincipalService>();
 
             return services;
         }

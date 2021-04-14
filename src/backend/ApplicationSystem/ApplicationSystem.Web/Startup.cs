@@ -5,6 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ApplicationSystem.Web.Infrastructure.ServiceExtensions;
 using ApplicationSystem.Web.Infrastructure;
+using ApplicationSystem.UseCases.Extensions;
+using ApplicationSystem.Infrastructure.Extensions;
 
 namespace ApplicationSystem.Web
 {
@@ -33,13 +35,14 @@ namespace ApplicationSystem.Web
         /// <param name="services">Service collection.</param>
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddUseCases();
             services.AddControllers();
             services.AddSwaggerServices();
             services.AddDomainServices(Configuration);
             services.AddAuthenticationServices(Configuration);
             services.AddConfigurationOptions(Configuration);
             services.AddCorsPolicies(Configuration);
-            services.AddInfrastructureServices();
+            services.AddInfrastructure();
         }
 
         /// <summary>

@@ -52,7 +52,7 @@ namespace ApplicationSystem.Infrastructure.Attachments
         /// <inheritdoc/>
         public async Task<AttachmentInfoDto> SaveAttachmentAsync(AttachmentDto attachmentDto, CancellationToken cancellationToken)
         {
-            var fileName = $"{Path.GetRandomFileName()}.{MimeTypesMap.GetExtension(attachmentDto.ContentType)}";
+            var fileName = $"{Guid.NewGuid()}.{MimeTypesMap.GetExtension(attachmentDto.ContentType)}";
             var path = GetFullFilePath(fileName);
             await File.WriteAllBytesAsync(path, attachmentDto.Data, cancellationToken);
 

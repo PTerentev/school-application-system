@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using ApplicationSystem.Infrastructure.Common.Dtos;
-using ApplicationSystem.UseCases.Applicant.GetApplications;
-using ApplicationSystem.UseCases.Applicant.SendApplication;
+using ApplicationSystem.UseCases.Applicant.Queries.GetApplicationsForApplicant;
+using ApplicationSystem.UseCases.Applicant.Commands.SendApplication;
 
 namespace ApplicationSystem.Web.Controllers
 {
@@ -34,7 +34,7 @@ namespace ApplicationSystem.Web.Controllers
         /// </summary>
         [Authorize]
         [HttpGet("applications/all")]
-        public async Task<ICollection<ApplicationInfoDto>> GetApplications(CancellationToken cancellationToken)
+        public async Task<IEnumerable<ApplicationInfoDto>> GetApplications(CancellationToken cancellationToken)
         {
             return await mediator.Send(new GetApplicationsForApplicantQuery(), cancellationToken);
         }

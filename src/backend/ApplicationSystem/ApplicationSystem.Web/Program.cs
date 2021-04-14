@@ -16,12 +16,12 @@ namespace ApplicationSystem.Web
         public static async Task Main(string[] args)
         {
             var host = Host
-             .CreateDefaultBuilder(args)
-             .ConfigureWebHostDefaults(webBuilder =>
-             {
-                 webBuilder.UseStartup<Startup>();
-             })
-             .Build();
+                .CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                })
+                .Build();
 
             await host.InitAsync();
             await host.RunAsync();

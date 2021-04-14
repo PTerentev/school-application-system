@@ -26,9 +26,9 @@ namespace ApplicationSystem.Web.Controllers
         }
 
         /// <summary>
-        /// Get applications.
+        /// Get attachment.
         /// </summary>
-        [HttpGet("{fileKey}")]
+        [HttpGet()]
         public async Task<AttachmentDto> GetAttachment([FromQuery] GetAttachmentQuery query, CancellationToken cancellationToken)
         {
             return await mediator.Send(query, cancellationToken);
