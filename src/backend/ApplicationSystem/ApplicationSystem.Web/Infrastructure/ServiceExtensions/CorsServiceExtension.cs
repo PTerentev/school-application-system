@@ -1,6 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace ApplicationSystem.Infrastructure.Web.Infrastructure.ServiceExtensions
+namespace ApplicationSystem.Web.Infrastructure.ServiceExtensions
 {
     /// <summary>
     /// CORS policy extension.
@@ -8,9 +9,9 @@ namespace ApplicationSystem.Infrastructure.Web.Infrastructure.ServiceExtensions
     internal static class CorsServiceExtension
     {
         /// <summary>
-        /// Add CORS policy.
+        /// Add CORS policies.
         /// </summary>
-        public static IServiceCollection AddCorsPolicy(this IServiceCollection services)
+        public static IServiceCollection AddCorsPolicies(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddCors(options =>
             {
@@ -21,6 +22,15 @@ namespace ApplicationSystem.Infrastructure.Web.Infrastructure.ServiceExtensions
                                       builder.AllowAnyHeader();
                                       builder.AllowAnyMethod();
                                   });
+
+                options.AddPolicy(name: CorsPolicyNames.ProductionPolicyName,
+                  builder =>
+                  {
+                      builder.WithOrigins(configuration["AppSettings:FrontendOrigin"]);
+                      builder.AllowAnyOrigin();
+                      builder.AllowAnyHeader();
+                      builder.AllowAnyMethod();
+                  });
             });
 
             return services;

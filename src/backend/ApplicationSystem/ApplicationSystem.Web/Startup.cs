@@ -1,33 +1,55 @@
-using ApplicationSystem.Web.Infrastructure.ServiceExtensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using ApplicationSystem.Web.Infrastructure.ServiceExtensions;
+using ApplicationSystem.Web.Infrastructure;
+using ApplicationSystem.UseCases.Extensions;
+using ApplicationSystem.Infrastructure.Extensions;
 
 namespace ApplicationSystem.Web
 {
+    /// <summary>
+    /// Start up class.
+    /// </summary>
     public class Startup
     {
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="configuration">Configuration.</param>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
+        /// <summary>
+        /// Configuration.
+        /// </summary>
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to add services to the container.
+        /// </summary>
+        /// <param name="services">Service collection.</param>
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddUseCases();
             services.AddControllers();
             services.AddSwaggerServices();
             services.AddDomainServices(Configuration);
             services.AddAuthenticationServices(Configuration);
             services.AddConfigurationOptions(Configuration);
-            services.AddCorsPolicy();
+            services.AddCorsPolicies(Configuration);
+            services.AddInfrastructure();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// </summary>
+        /// <param name="app">Application builder.</param>
+        /// <param name="env">Web host environment.</param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -41,6 +63,16 @@ namespace ApplicationSystem.Web
 
             app.UseRouting();
 
+            if (env.IsDevelopment())
+            {
+                app.UseCors(CorsPolicyNames.DevCorsPolicyName);
+            }
+            else
+            {
+                app.UseCors(CorsPolicyNames.ProductionPolicyName);
+            }
+
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

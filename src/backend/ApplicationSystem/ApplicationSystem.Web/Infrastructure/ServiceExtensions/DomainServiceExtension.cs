@@ -1,4 +1,5 @@
 ﻿using ApplicationSystem.DataAccess;
+using ApplicationSystem.DataAccess.Services;
 using ApplicationSystem.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -34,6 +35,10 @@ namespace ApplicationSystem.Web.Infrastructure.ServiceExtensions
                 options.User.RequireUniqueEmail = true;
                 options.Password = passwordSettings;
             });
+
+            services.AddScoped<IUserStore<User>, ApplicationUserStore>();
+
+            services.AddAsyncInitializer<DatabaseInitializer>();
 
             return services;
         }

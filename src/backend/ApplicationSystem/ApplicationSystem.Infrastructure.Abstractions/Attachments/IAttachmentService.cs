@@ -1,15 +1,9 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 using ApplicationSystem.Infrastructure.Common.Dtos.Attachments;
 
 namespace ApplicationSystem.Infrastructure.Abstractions.Attachments
 {
-    /// <summary>
-    /// File info DTO.
-    /// </summary>
-    public record FileInfoDto (string FileUrl);
-
     /// <summary>
     /// Attachment service.
     /// </summary>
@@ -20,7 +14,7 @@ namespace ApplicationSystem.Infrastructure.Abstractions.Attachments
         /// </summary>
         /// <param name="attachmentDto">Attachment.</param>
         /// <returns>File info.</returns>
-        Task<FileInfoDto> SaveAttachmentAsync(AttachmentDto attachmentDto, CancellationToken cancellationToken);
+        Task<AttachmentInfoDto> SaveAttachmentAsync(AttachmentDto attachmentDto, CancellationToken cancellationToken);
 
         /// <summary>
         /// Get attachment.
@@ -28,6 +22,13 @@ namespace ApplicationSystem.Infrastructure.Abstractions.Attachments
         /// <param name="fileInfo">File info.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns>Attachment.</returns>
-        Task<AttachmentDto> GetAttachmentAsync(FileInfoDto fileInfo, CancellationToken cancellationToken);
+        Task<AttachmentDto> GetAttachmentAsync(AttachmentInfoDto fileInfo, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Remove attachment.
+        /// </summary>
+        /// <param name="fileInfo">File info.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        Task RemoveAttachmentAsync(AttachmentInfoDto fileInfo, CancellationToken cancellationToken);
     }
 }

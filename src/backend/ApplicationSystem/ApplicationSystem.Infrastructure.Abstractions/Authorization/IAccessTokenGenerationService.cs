@@ -12,10 +12,5 @@ namespace ApplicationSystem.Infrastructure.Abstractions.Authorization
         /// Generate access token.
         /// </summary>
         string GenerateToken(IEnumerable<Claim> claims);
-
-        /// <summary>
-        /// Get token claims.
-        /// </summary>
-        IEnumerable<Claim> GetTokenClaims(string token);
     }
 }

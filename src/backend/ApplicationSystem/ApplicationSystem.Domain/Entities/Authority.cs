@@ -38,6 +38,6 @@ namespace ApplicationSystem.Domain.Entities
         /// <summary>
         /// Users.
         /// </summary>
-        public ICollection<User> Users { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 }

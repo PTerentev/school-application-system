@@ -45,7 +45,7 @@ namespace ApplicationSystem.Domain.Entities
         /// <summary>
         /// Creator user.
         /// </summary>
-        public User CreatorUser { get; set; }
+        public virtual User CreatorUser { get; set; }
 
         /// <summary>
         /// Creation date.
@@ -61,7 +61,7 @@ namespace ApplicationSystem.Domain.Entities
         /// <summary>
         /// Authority.
         /// </summary>
-        public Authority Authority { get; set; }
+        public virtual Authority Authority { get; set; }
 
         /// <summary>
         /// Close date.
@@ -71,7 +71,7 @@ namespace ApplicationSystem.Domain.Entities
         /// <summary>
         /// Reply.
         /// </summary>
-        public Reply Reply { get; set; }
+        public virtual Reply Reply { get; set; }
 
         /// <summary>
         /// Status.
@@ -86,6 +86,6 @@ namespace ApplicationSystem.Domain.Entities
         /// <summary>
         /// Attachments.
         /// </summary>
-        public ICollection<Attachment> Attachments { get; set; }
+        public virtual ICollection<Attachment> Attachments { get; set; }
     }
 }

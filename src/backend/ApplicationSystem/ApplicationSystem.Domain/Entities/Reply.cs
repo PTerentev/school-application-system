@@ -53,11 +53,11 @@ namespace ApplicationSystem.Domain.Entities
         /// <summary>
         /// Application.
         /// </summary>
-        public Application Application { get; set; }
+        public virtual Application Application { get; set; }
 
         /// <summary>
         /// Attachments.
         /// </summary>
-        public ICollection<Attachment> Attachments { get; set; }
+        public virtual ICollection<Attachment> Attachments { get; set; }
     }
 }
