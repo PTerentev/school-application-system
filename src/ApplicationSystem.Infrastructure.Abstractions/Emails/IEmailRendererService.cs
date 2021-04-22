@@ -16,7 +16,7 @@ namespace ApplicationSystem.Infrastructure.Abstractions.Emails
         /// <param name="applicationDto">Application.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns>Email content.</returns>
-        Task<EmailContentDto> RenderRejectedApplicationContentAsync(ApplicationInfoDto applicationDto, CancellationToken cancellationToken);
+        Task<EmailContentDto> RenderRejectedApplicationContentAsync(ApplicationDto applicationDto, CancellationToken cancellationToken);
 
         /// <summary>
         /// Render published application content.
@@ -24,7 +24,7 @@ namespace ApplicationSystem.Infrastructure.Abstractions.Emails
         /// <param name="applicationDto">Application.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns>Email content.</returns>
-        Task<EmailContentDto> RenderPublishedApplicationContentAsync(ApplicationInfoDto applicationDto, CancellationToken cancellationToken);
+        Task<EmailContentDto> RenderPublishedApplicationContentAsync(ApplicationDto applicationDto, CancellationToken cancellationToken);
 
         /// <summary>
         /// Render new application content.
@@ -33,7 +33,7 @@ namespace ApplicationSystem.Infrastructure.Abstractions.Emails
         /// <param name="applicationDto">Application.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns>Email content.</returns>
-        Task<EmailContentDto> RenderNewApplicationContentAsync(ApplicationInfoDto applicationDto, CancellationToken cancellationToken);
+        Task<EmailContentDto> RenderNewApplicationContentAsync(ApplicationDto applicationDto, CancellationToken cancellationToken);
 
         /// <summary>
         /// Render authority content.
@@ -42,6 +42,6 @@ namespace ApplicationSystem.Infrastructure.Abstractions.Emails
         /// <param name="applicationDto">Application.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns>Email content.</returns>
-        Task<EmailContentDto> RenderAuthorityContentAsync(ApplicationInfoDto applicationDto, CancellationToken cancellationToken);
+        Task<EmailContentDto> RenderAuthorityContentAsync(ApplicationDto applicationDto, CancellationToken cancellationToken);
     }
 }

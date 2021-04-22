@@ -18,7 +18,7 @@ namespace ApplicationSystem.UseCases.Editorial.Commands.RejectApplication
     /// <summary>
     /// Reject application command handler.
     /// </summary>
-    internal class RejectApplicationCommandHandler : IRequest<RejectApplicationCommand>
+    internal class RejectApplicationCommandHandler : IRequestHandler<RejectApplicationCommand>
     {
         private readonly ApplicationDbContext dbContext;
         private readonly IMapper mapper;
@@ -64,14 +64,14 @@ namespace ApplicationSystem.UseCases.Editorial.Commands.RejectApplication
             {
                 var user = await dbContext.Users.Where(u => u.Id == application.CreatorUserId).SingleAsync(CancellationToken.None);
 
-                var applicationInfo = mapper.Map<ApplicationInfoDto>(application);
+                var applicationInfo = mapper.Map<ApplicationDto>(application);
                 await SendEmailToUserAsync(user.Email, applicationInfo, CancellationToken.None);
             }
 
             return Unit.Value;
         }
 
-        private async Task SendEmailToUserAsync(string email, ApplicationInfoDto applicationInfoDto, CancellationToken cancellationToken)
+        private async Task SendEmailToUserAsync(string email, ApplicationDto applicationInfoDto, CancellationToken cancellationToken)
         {
             var content = await emailRendererService.RenderRejectedApplicationContentAsync(applicationInfoDto, cancellationToken);
 

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Saritasa.Tools.Common.Pagination;
 using ApplicationSystem.Infrastructure.Common.Dtos;
 using ApplicationSystem.UseCases.Public.GetPublishedApplications;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ApplicationSystem.Web.Controllers
 {
@@ -13,6 +14,7 @@ namespace ApplicationSystem.Web.Controllers
     /// </summary>
     [ApiController]
     [Route("api/public")]
+    [AllowAnonymous]
     public class PublicController : ControllerBase
     {
         private readonly IMediator mediator;

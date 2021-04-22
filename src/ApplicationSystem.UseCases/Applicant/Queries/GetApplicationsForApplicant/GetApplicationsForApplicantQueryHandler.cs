@@ -14,7 +14,7 @@ namespace ApplicationSystem.UseCases.Applicant.Queries.GetApplicationsForApplica
     /// <summary>
     /// Get applications query handler.
     /// </summary>
-    internal class GetApplicationsForApplicantQueryHandler : IRequestHandler<GetApplicationsForApplicantQuery, IEnumerable<ApplicationInfoDto>>
+    internal class GetApplicationsForApplicantQueryHandler : IRequestHandler<GetApplicationsForApplicantQuery, IEnumerable<ApplicationDto>>
     {
         private readonly ApplicationDbContext dbContext;
         private readonly IMapper mapper;
@@ -31,11 +31,11 @@ namespace ApplicationSystem.UseCases.Applicant.Queries.GetApplicationsForApplica
         }
 
         /// <inheritdoc/>
-        public async Task<IEnumerable<ApplicationInfoDto>> Handle(GetApplicationsForApplicantQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<ApplicationDto>> Handle(GetApplicationsForApplicantQuery request, CancellationToken cancellationToken)
         {
             var userId = accessUserPrincipalService.GetUserId();
             var query = dbContext.Applications.Where(a => a.CreatorUserId == userId);
-            return await mapper.ProjectTo<ApplicationInfoDto>(query).ToListAsync(cancellationToken);
+            return await mapper.ProjectTo<ApplicationDto>(query).ToListAsync(cancellationToken);
         }
     }
 }
