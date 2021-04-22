@@ -10,7 +10,7 @@ namespace ApplicationSystem.Infrastructure.Emails
     public class EmailRendererService : IEmailRendererService
     {
         /// <inheritdoc/>
-        public Task<EmailContentDto> RenderAuthorityContentAsync(ApplicationInfoDto applicationDto, CancellationToken cancellationToken)
+        public Task<EmailContentDto> RenderAuthorityContentAsync(ApplicationDto applicationDto, CancellationToken cancellationToken)
         {
             var content = new EmailContentDto()
             {
@@ -23,7 +23,7 @@ namespace ApplicationSystem.Infrastructure.Emails
         }
 
         /// <inheritdoc/>
-        public Task<EmailContentDto> RenderNewApplicationContentAsync(ApplicationInfoDto applicationDto, CancellationToken cancellationToken)
+        public Task<EmailContentDto> RenderNewApplicationContentAsync(ApplicationDto applicationDto, CancellationToken cancellationToken)
         {
             var content = new EmailContentDto()
             {
@@ -36,21 +36,21 @@ namespace ApplicationSystem.Infrastructure.Emails
         }
 
         /// <inheritdoc/>
-        public Task<EmailContentDto> RenderPublishedApplicationContentAsync(ApplicationInfoDto applicationDto, CancellationToken cancellationToken)
+        public Task<EmailContentDto> RenderPublishedApplicationContentAsync(ApplicationDto applicationDto, CancellationToken cancellationToken)
         {
             var content = new EmailContentDto()
             {
                 Subject = "Система жалоб и предложений: Ответ на жалобу был опубликован",
                 Body = $"<p>Название: {applicationDto.Name}</p>" +
                         $"<p>Описание: {applicationDto.Description}</p>" +
-                        $"<p>Ответ: {applicationDto.ReplyText}</p>"
+                        $"<p>Ответ: {applicationDto.Reply.Text}</p>"
             };
 
             return Task.FromResult(content);
         }
 
         /// <inheritdoc/>
-        public Task<EmailContentDto> RenderRejectedApplicationContentAsync(ApplicationInfoDto applicationDto, CancellationToken cancellationToken)
+        public Task<EmailContentDto> RenderRejectedApplicationContentAsync(ApplicationDto applicationDto, CancellationToken cancellationToken)
         {
             var content = new EmailContentDto()
             {

@@ -84,12 +84,12 @@ namespace ApplicationSystem.UseCases.Applicant.Commands.SendApplication
             var editorialUsers = await userManager.GetUsersInRoleAsync(UserRoles.Editor.ToString());
             var emails = editorialUsers.Select(u => u.Email);
 
-            await SendEmailsToEditorial(emails, mapper.Map<ApplicationInfoDto>(application), CancellationToken.None);
+            await SendEmailsToEditorial(emails, mapper.Map<ApplicationDto>(application), CancellationToken.None);
 
             return Unit.Value;
         }
 
-        private async Task SendEmailsToEditorial(IEnumerable<string> emails, ApplicationInfoDto applicationInfo, CancellationToken cancellationToken)
+        private async Task SendEmailsToEditorial(IEnumerable<string> emails, ApplicationDto applicationInfo, CancellationToken cancellationToken)
         {
             var content = await emailRendererService.RenderNewApplicationContentAsync(applicationInfo, cancellationToken);
 

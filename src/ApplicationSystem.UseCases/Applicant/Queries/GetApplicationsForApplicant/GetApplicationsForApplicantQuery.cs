@@ -7,7 +7,7 @@ namespace ApplicationSystem.UseCases.Applicant.Queries.GetApplicationsForApplica
     /// <summary>
     /// Get applications by applicant query.
     /// </summary>
-    public class GetApplicationsForApplicantQuery : IRequest<IEnumerable<ApplicationInfoDto>>
+    public class GetApplicationsForApplicantQuery : IRequest<IEnumerable<ApplicationDto>>
     {
     }
 }

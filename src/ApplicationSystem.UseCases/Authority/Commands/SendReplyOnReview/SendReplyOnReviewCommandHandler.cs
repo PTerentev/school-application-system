@@ -52,6 +52,11 @@ namespace ApplicationSystem.UseCases.Authority.Commands.SendReplyOnReview
 
             application.Status = ApplicationStatus.Review;
 
+            if (application.Reply != null)
+            {
+                dbContext.Replies.Remove(application.Reply);
+            }
+
             var reply = new Reply()
             {
                 ApplicationId = application.Id,

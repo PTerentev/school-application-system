@@ -4,6 +4,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using ApplicationSystem.Infrastructure.Common.Dtos.Attachments;
 using ApplicationSystem.UseCases.Attachments.GetAttachment;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ApplicationSystem.Web.Controllers
 {
@@ -29,6 +30,7 @@ namespace ApplicationSystem.Web.Controllers
         /// Get attachment.
         /// </summary>
         [HttpGet]
+        [AllowAnonymous]
         public async Task<AttachmentDto> GetAttachment([FromQuery] GetAttachmentQuery query, CancellationToken cancellationToken)
         {
             return await mediator.Send(query, cancellationToken);

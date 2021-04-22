@@ -62,12 +62,12 @@ namespace ApplicationSystem.UseCases.Editorial.Commands.SendToAuthority
             await dbContext.SaveChangesAsync(cancellationToken);
 
             var emails = authority.Users.Select(u => u.Email);
-            await SendEmailsToAuthority(emails, mapper.Map<ApplicationInfoDto>(application), CancellationToken.None);
+            await SendEmailsToAuthority(emails, mapper.Map<ApplicationDto>(application), CancellationToken.None);
 
             return Unit.Value;
         }
 
-        private async Task SendEmailsToAuthority(IEnumerable<string> emails, ApplicationInfoDto applicationInfo, CancellationToken cancellationToken)
+        private async Task SendEmailsToAuthority(IEnumerable<string> emails, ApplicationDto applicationInfo, CancellationToken cancellationToken)
         {
             var content = await emailRendererService.RenderAuthorityContentAsync(applicationInfo, cancellationToken);
 

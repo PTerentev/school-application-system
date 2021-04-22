@@ -11,6 +11,7 @@ using ApplicationSystem.UseCases.Authority.Commands.SendReplyOnReview;
 using ApplicationSystem.UseCases.Authority.Dtos;
 using ApplicationSystem.UseCases.Authority.Queries.GetUsersAuthorities;
 using ApplicationSystem.Web.Models;
+using ApplicationSystem.UseCases.Authority.Queries.GetApplicationsFromAllUsersAuthorities;
 
 namespace ApplicationSystem.Web.Controllers
 {
@@ -40,6 +41,15 @@ namespace ApplicationSystem.Web.Controllers
         public async Task<IEnumerable<AuthorityDto>> GetUsersAuthorities(CancellationToken cancellationToken)
         {
             return await mediator.Send(new GetUsersAuthoritiesQuery(), cancellationToken);
+        }
+
+        /// <summary>
+        /// Get applications from all users authorities.
+        /// </summary>
+        [HttpGet("my/applications")]
+        public async Task<IEnumerable<ApplicationDto>> GetApplicationsFromAllUsersAuthorities(CancellationToken cancellationToken)
+        {
+            return await mediator.Send(new GetApplicationsFromAllUsersAuthoritiesQuery(), cancellationToken);
         }
 
         /// <summary>

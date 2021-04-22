@@ -61,8 +61,6 @@ namespace ApplicationSystem.Web
 
             app.UseHttpsRedirection();
 
-            app.UseRouting();
-
             if (env.IsDevelopment())
             {
                 app.UseCors(CorsPolicyNames.DevCorsPolicyName);
@@ -72,12 +70,12 @@ namespace ApplicationSystem.Web
                 app.UseCors(CorsPolicyNames.ProductionPolicyName);
             }
 
+            app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllers().RequireAuthorization();
             });
         }
     }

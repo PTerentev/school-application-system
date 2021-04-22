@@ -34,7 +34,7 @@ namespace ApplicationSystem.Web.Controllers
         /// </summary>
         [Authorize]
         [HttpGet("applications/all")]
-        public async Task<IEnumerable<ApplicationInfoDto>> GetApplications(CancellationToken cancellationToken)
+        public async Task<IEnumerable<ApplicationDto>> GetApplications(CancellationToken cancellationToken)
         {
             return await mediator.Send(new GetApplicationsForApplicantQuery(), cancellationToken);
         }

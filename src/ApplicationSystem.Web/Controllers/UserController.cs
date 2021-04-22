@@ -6,6 +6,7 @@ using ApplicationSystem.Infrastructure.Common.Dtos;
 using ApplicationSystem.UseCases.User.GetInfo;
 using ApplicationSystem.UseCases.User.Login;
 using ApplicationSystem.UseCases.User.Register;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ApplicationSystem.Web.Controllers
 {
@@ -14,6 +15,7 @@ namespace ApplicationSystem.Web.Controllers
     /// </summary>
     [ApiController]
     [Route("api/user")]
+    [AllowAnonymous]
     public class UserController : ControllerBase
     {
         private readonly IMediator mediator;

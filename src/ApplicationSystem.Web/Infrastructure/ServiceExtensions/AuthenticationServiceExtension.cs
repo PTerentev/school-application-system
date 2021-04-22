@@ -38,15 +38,6 @@ namespace ApplicationSystem.Web.Infrastructure.ServiceExtensions
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtOptions.SecretKey)),
                     ValidIssuer = jwtOptions.Issuer
                 };
-
-                options.Events = new JwtBearerEvents
-                {
-                    OnAuthenticationFailed = context =>
-                    {
-                        context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-                        return Task.CompletedTask;
-                    }
-                };
             });
 
             return services;
