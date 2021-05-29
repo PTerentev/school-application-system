@@ -16,6 +16,7 @@ namespace ApplicationSystem.Web.Infrastructure.ServiceExtensions
         {
             services.Configure<JwtOptions>(configuration.GetSection(JwtOptions.Name));
             services.Configure<AdminAccountOptions>(configuration.GetSection(AdminAccountOptions.Name));
+            services.Configure<AttachmentValidationOptions>(configuration.GetSection(AttachmentValidationOptions.Name));
 
             return services;
         }
