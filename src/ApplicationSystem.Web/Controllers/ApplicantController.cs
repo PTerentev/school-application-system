@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Http;
 using ApplicationSystem.Infrastructure.Common.Dtos;
 using ApplicationSystem.UseCases.Applicant.Queries.GetApplicationsForApplicant;
 using ApplicationSystem.UseCases.Applicant.Commands.SendApplication;
+using ApplicationSystem.UseCases.Applicant.Queries.GetApplicationTypes;
+using ApplicationSystem.UseCases.Applicant.Dtos;
 
 namespace ApplicationSystem.Web.Controllers
 {
@@ -48,6 +50,16 @@ namespace ApplicationSystem.Web.Controllers
         {
             await mediator.Send(sendApplicationCommand, cancellationToken);
             return StatusCode(StatusCodes.Status201Created);
+        }
+
+        /// <summary>
+        /// Get application types.
+        /// </summary>
+        [AllowAnonymous]
+        [HttpGet("applications/types")]
+        public async Task<IEnumerable<ApplicationTypeDto>> GetApplicationTypes(CancellationToken cancellationToken)
+        {
+            return await mediator.Send(new GetApplicationTypesQuery(), cancellationToken);
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using MediatR;
 using AutoMapper;
+using Saritasa.Tools.Domain.Exceptions;
 using Microsoft.AspNetCore.Identity;
 using ApplicationSystem.DataAccess;
 using ApplicationSystem.Domain.Entities;
@@ -15,6 +16,7 @@ using ApplicationSystem.Infrastructure.Common.Dtos.Emails;
 using ApplicationSystem.Infrastructure.Abstractions.Authorization;
 using ApplicationSystem.UseCases.Attachments.SaveAttachment;
 using ApplicationSystem.Infrastructure.Common.Dtos.Attachments;
+using ApplicationSystem.Infrastructure.Common.Application;
 
 namespace ApplicationSystem.UseCases.Applicant.Commands.SendApplication
 {
@@ -78,6 +80,11 @@ namespace ApplicationSystem.UseCases.Applicant.Commands.SendApplication
                 application.Attachments = attachments.ToList();
             }
 
+            if (request.ApplicationTypeId.HasValue)
+            {
+                await SetAuthorityByApplicationTypeAsync(application, request.ApplicationTypeId.Value, cancellationToken);
+            }
+
             dbContext.Applications.Add(application);
             await dbContext.SaveChangesAsync(cancellationToken);
 
@@ -87,6 +94,19 @@ namespace ApplicationSystem.UseCases.Applicant.Commands.SendApplication
             await SendEmailsToEditorial(emails, mapper.Map<ApplicationDto>(application), CancellationToken.None);
 
             return Unit.Value;
+        }
+
+        private async Task SetAuthorityByApplicationTypeAsync(Application application, int applicationTypeId, CancellationToken cancellationToken)
+        {
+            var applicationType = await dbContext.ApplicationTypes.FindAsync(applicationTypeId, cancellationToken);
+
+            if (applicationType == null)
+            {
+                throw new ValidationException("Application type is not found.");
+            }
+
+            application.Status = ApplicationStatus.Sent;
+            application.AuthorityId = applicationType.AuthorityId;
         }
 
         private async Task SendEmailsToEditorial(IEnumerable<string> emails, ApplicationDto applicationInfo, CancellationToken cancellationToken)

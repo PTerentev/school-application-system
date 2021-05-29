@@ -48,7 +48,6 @@ namespace ApplicationSystem.DataAccess
         /// <inheritdoc/>
         public async Task InitializeAsync()
         {
-            await dbContext.Database.EnsureCreatedAsync();
             await dbContext.Database.MigrateAsync();
             await AppDbContextSeeder.SeedUserRolesAsync(roleManager);
             if (environment.IsDevelopment())

@@ -5,6 +5,7 @@ using ApplicationSystem.Domain.Entities;
 using ApplicationSystem.Infrastructure.Common.Dtos;
 using ApplicationSystem.Infrastructure.Common.Dtos.Attachments;
 using ApplicationSystem.UseCases.Authority.Dtos;
+using ApplicationSystem.UseCases.Applicant.Dtos;
 
 namespace ApplicationSystem.UseCases.Common.Mapping
 {
@@ -18,6 +19,7 @@ namespace ApplicationSystem.UseCases.Common.Mapping
         /// </summary>
         public AutoMapperProfile()
         {
+            CreateMap<Domain.Entities.ApplicationType, ApplicationTypeDto>();
             CreateMap<Domain.Entities.Authority, AuthorityDto>();
             CreateMap<Domain.Entities.Application, ApplicationDto>();
             CreateMap<Attachment, AttachmentInfoDto>()

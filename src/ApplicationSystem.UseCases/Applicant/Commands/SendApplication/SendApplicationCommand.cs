@@ -27,5 +27,10 @@ namespace ApplicationSystem.UseCases.Applicant.Commands.SendApplication
         /// Attachment files.
         /// </summary>
         public IFormFileCollection FormFiles { get; set; }
+
+        /// <summary>
+        /// Application type id.
+        /// </summary>
+        public int? ApplicationTypeId { get; set; }
     }
 }
