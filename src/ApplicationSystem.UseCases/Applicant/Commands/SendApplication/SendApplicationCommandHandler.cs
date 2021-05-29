@@ -17,6 +17,7 @@ using ApplicationSystem.Infrastructure.Abstractions.Authorization;
 using ApplicationSystem.UseCases.Attachments.SaveAttachment;
 using ApplicationSystem.Infrastructure.Common.Dtos.Attachments;
 using ApplicationSystem.Infrastructure.Common.Application;
+using Microsoft.EntityFrameworkCore;
 
 namespace ApplicationSystem.UseCases.Applicant.Commands.SendApplication
 {
@@ -98,7 +99,7 @@ namespace ApplicationSystem.UseCases.Applicant.Commands.SendApplication
 
         private async Task SetAuthorityByApplicationTypeAsync(Application application, int applicationTypeId, CancellationToken cancellationToken)
         {
-            var applicationType = await dbContext.ApplicationTypes.FindAsync(applicationTypeId, cancellationToken);
+            var applicationType = await dbContext.ApplicationTypes.FirstOrDefaultAsync(a => a.Id == applicationTypeId, cancellationToken);
 
             if (applicationType == null)
             {

@@ -4,6 +4,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using ApplicationSystem.DataAccess;
 using ApplicationSystem.Domain.Entities;
+using Saritasa.Tools.Domain.Exceptions;
 
 namespace ApplicationSystem.UseCases.Admin.Commands.AddApplicationType
 {
@@ -28,15 +29,17 @@ namespace ApplicationSystem.UseCases.Admin.Commands.AddApplicationType
         {
             if (!await dbContext.Authorities.AnyAsync(a => a.Id == request.AuthorityId, cancellationToken))
             {
-                var applicationType = new ApplicationType()
-                {
-                    Name = request.Name,
-                    AuthorityId = request.AuthorityId
-                };
-
-                dbContext.ApplicationTypes.Add(applicationType);
-                await dbContext.SaveChangesAsync(cancellationToken);
+                throw new ValidationException("Authority with such Id is not found.");
             }
+
+            var applicationType = new ApplicationType()
+            {
+                Name = request.Name,
+                AuthorityId = request.AuthorityId
+            };
+
+            dbContext.ApplicationTypes.Add(applicationType);
+            await dbContext.SaveChangesAsync(cancellationToken);
 
             return Unit.Value;
         }
