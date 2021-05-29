@@ -77,12 +77,7 @@ namespace ApplicationSystem.UseCases.Attachments.SaveAttachment
             {
                 try
                 {
-                    await attachmentService.RemoveAttachmentAsync(
-                        new AttachmentInfoDto()
-                        {
-                            FileKey = attachment.FileKey
-                        },
-                        CancellationToken.None);
+                    await attachmentService.RemoveAttachmentAsync(attachment.FileKey, CancellationToken.None);
                 }
                 catch
                 {

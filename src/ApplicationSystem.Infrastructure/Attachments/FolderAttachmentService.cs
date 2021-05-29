@@ -23,23 +23,16 @@ namespace ApplicationSystem.Infrastructure.Attachments
         }
 
         /// <inheritdoc/>
-        public async Task<AttachmentDto> GetAttachmentAsync(AttachmentInfoDto fileInfo, CancellationToken cancellationToken)
+        public async Task<byte[]> GetAttachmentAsync(string fileKey, CancellationToken cancellationToken)
         {
-            var path = GetFullFilePath(fileInfo.FileKey);
-            var bytes = await File.ReadAllBytesAsync(path, cancellationToken);
-            var contentType = MimeTypesMap.GetMimeType(fileInfo.FileKey);
-
-            return new AttachmentDto()
-            {
-                Data = bytes,
-                ContentType = contentType
-            };
+            var path = GetFullFilePath(fileKey);
+            return await File.ReadAllBytesAsync(path, cancellationToken);
         }
 
         /// <inheritdoc/>
-        public Task RemoveAttachmentAsync(AttachmentInfoDto fileInfo, CancellationToken cancellationToken)
+        public Task RemoveAttachmentAsync(string fileKey, CancellationToken cancellationToken)
         {
-            var path = GetFullFilePath(fileInfo.FileKey);
+            var path = GetFullFilePath(fileKey);
 
             if (File.Exists(path))
             {

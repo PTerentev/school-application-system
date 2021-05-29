@@ -31,6 +31,6 @@ namespace ApplicationSystem.UseCases.Applicant.Commands.SendApplication
         /// <summary>
         /// Application type id.
         /// </summary>
-        public int? ApplicationTypeId { get; set; }
+        public int? ApplicationTypeId { get; set; } = null;
     }
 }

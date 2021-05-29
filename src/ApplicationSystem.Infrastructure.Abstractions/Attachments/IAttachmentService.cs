@@ -20,16 +20,16 @@ namespace ApplicationSystem.Infrastructure.Abstractions.Attachments
         /// <summary>
         /// Get attachment.
         /// </summary>
-        /// <param name="fileInfo">File info.</param>
+        /// <param name="fileKey">File key.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns>Attachment.</returns>
-        Task<AttachmentDto> GetAttachmentAsync(AttachmentInfoDto fileInfo, CancellationToken cancellationToken);
+        Task<byte[]> GetAttachmentAsync(string fileKey, CancellationToken cancellationToken);
 
         /// <summary>
         /// Remove attachment.
         /// </summary>
-        /// <param name="fileInfo">File info.</param>
+        /// <param name="fileKey">File key.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
-        Task RemoveAttachmentAsync(AttachmentInfoDto fileInfo, CancellationToken cancellationToken);
+        Task RemoveAttachmentAsync(string fileKey, CancellationToken cancellationToken);
     }
 }
