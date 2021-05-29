@@ -32,7 +32,10 @@ namespace ApplicationSystem.UseCases.Common.Behaviors
         {
             if (request is IRequestWithAttachment requestWithAttachment)
             {
-                ValidateAttachments(requestWithAttachment.FormFiles);
+                if (requestWithAttachment.FormFiles != null)
+                {
+                    ValidateAttachments(requestWithAttachment.FormFiles);
+                }
             }
 
             return await next();
@@ -50,6 +53,11 @@ namespace ApplicationSystem.UseCases.Common.Behaviors
             if (ByteSize.FromBytes(filesSizeBytes).MegaBytes > validationOptions.AllowedFileSizeInMegabytes)
             {
                 throw new ValidationException($"The application allows a maximum file size for attachments of {validationOptions.AllowedFileSizeInMegabytes} megabytes.");
+            }
+
+            if (!formFiles.All(f => validationOptions.AllowedContentTypes.Contains(f.ContentType)))
+            {
+                throw new ValidationException($"The application does not allow such file format for attachments.");
             }
         }
     }

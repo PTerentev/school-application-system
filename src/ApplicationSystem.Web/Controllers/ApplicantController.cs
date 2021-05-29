@@ -42,6 +42,7 @@ namespace ApplicationSystem.Web.Controllers
         /// <summary>
         /// Send application.
         /// </summary>
+        [AllowAnonymous]
         [HttpPost("applications")]
         public async Task<StatusCodeResult> SendApplication([FromForm] SendApplicationCommand sendApplicationCommand, CancellationToken cancellationToken)
         {

@@ -1,4 +1,7 @@
-﻿namespace ApplicationSystem.Infrastructure.Common.Options
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace ApplicationSystem.Infrastructure.Common.Options
 {
     /// <summary>
     /// Attachment validation options.
@@ -19,5 +22,10 @@
         /// Allowed file size in megabytes.
         /// </summary>
         public int AllowedFileSizeInMegabytes { get; set; }
+
+        /// <summary>
+        /// Allowed content types.
+        /// </summary>
+        public IEnumerable<string> AllowedContentTypes { get; set; }
     }
 }
