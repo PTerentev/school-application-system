@@ -13,8 +13,8 @@ namespace ApplicationSystem.UseCases.Admin.AddUserToRole
         public int UserId { get; set; }
 
         /// <summary>
-        /// Role.
+        /// Role Id.
         /// </summary>
-        public string Role { get; set; }
+        public int RoleId { get; set; }
     }
 }

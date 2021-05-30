@@ -96,7 +96,7 @@ namespace ApplicationSystem.Web.Controllers.Admin
         /// Create authority.
         /// </summary>
         [HttpPost]
-        public async Task<StatusCodeResult> CreateAuthority([FromBody] CreateAuthorityCommand command, CancellationToken cancellationToken)
+        public async Task<StatusCodeResult> AddAuthority([FromBody] CreateAuthorityCommand command, CancellationToken cancellationToken)
         {
             await mediator.Send(command, cancellationToken);
             return StatusCode(StatusCodes.Status201Created);

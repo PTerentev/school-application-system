@@ -22,6 +22,7 @@ namespace ApplicationSystem.UseCases.Common.Mapping
         /// </summary>
         public AutoMapperProfile()
         {
+            CreateMap<Domain.Entities.Role, RoleDto>();
             CreateMap<Domain.Entities.ApplicationType, ApplicationTypeDto>();
             CreateMap<Domain.Entities.Authority, AuthorityDto>();
             CreateMap<Domain.Entities.Application, ApplicationDto>()

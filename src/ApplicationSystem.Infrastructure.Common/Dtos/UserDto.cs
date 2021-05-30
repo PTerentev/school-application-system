@@ -1,4 +1,6 @@
-﻿namespace ApplicationSystem.Infrastructure.Common.Dtos
+﻿using System.Collections.Generic;
+
+namespace ApplicationSystem.Infrastructure.Common.Dtos
 {
     /// <summary>
     /// User DTO.
@@ -9,6 +11,11 @@
         /// Id.
         /// </summary>
         public int Id { get; set; }
+
+        /// <summary>
+        /// Full name.
+        /// </summary>
+        public string FullName => $"{FirstName} {MiddleName} {LastName}";
 
         /// <summary>
         /// First name.
@@ -34,5 +41,10 @@
         /// Email.
         /// </summary>
         public string Email { get; set; }
+
+        /// <summary>
+        /// User roles.
+        /// </summary>
+        public IEnumerable<string> UserRoles { get; set; }
     }
 }
