@@ -28,7 +28,8 @@ namespace ApplicationSystem.UseCases.Common.Mapping
                 .ForMember(a => a.Attachments, opt => opt.MapFrom(a => a.Attachments.Select(a => a.Id)));
             CreateMap<Attachment, AttachmentInfoDto>()
                 .ReverseMap();
-            CreateMap<Reply, ReplyDto>();
+            CreateMap<Reply, ReplyDto>()
+                .ForMember(a => a.Attachments, opt => opt.MapFrom(a => a.Attachments.Select(a => a.Id)));
             CreateMap<Domain.Entities.User, UserDto>();
             CreateMap<IFormFile, AttachmentDto>()
                 .ForMember(a => a.Data, opt => opt.MapFrom(f => GetByteArray(f)));

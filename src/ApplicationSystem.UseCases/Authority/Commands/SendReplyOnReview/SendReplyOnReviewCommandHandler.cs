@@ -12,6 +12,7 @@ using ApplicationSystem.Infrastructure.Common.Dtos.Attachments;
 using ApplicationSystem.UseCases.Attachments.SaveAttachment;
 using ApplicationSystem.Domain.Entities;
 using Saritasa.Tools.Domain.Exceptions;
+using ApplicationSystem.Infrastructure.Abstractions.Attachments;
 
 namespace ApplicationSystem.UseCases.Authority.Commands.SendReplyOnReview
 {
@@ -23,6 +24,7 @@ namespace ApplicationSystem.UseCases.Authority.Commands.SendReplyOnReview
         private readonly ApplicationDbContext dbContext;
         private readonly IMapper mapper;
         private readonly IMediator mediator;
+        private readonly IAttachmentService attachmentService;
 
         /// <summary>
         /// Constructor.
@@ -30,11 +32,13 @@ namespace ApplicationSystem.UseCases.Authority.Commands.SendReplyOnReview
         public SendReplyOnReviewCommandHandler(
             ApplicationDbContext dbContext,
             IMapper mapper,
-            IMediator mediator)
+            IMediator mediator,
+            IAttachmentService attachmentService)
         {
             this.dbContext = dbContext;
             this.mapper = mapper;
             this.mediator = mediator;
+            this.attachmentService = attachmentService;
         }
 
         /// <inheritdoc/>
@@ -52,9 +56,12 @@ namespace ApplicationSystem.UseCases.Authority.Commands.SendReplyOnReview
 
             application.Status = ApplicationStatus.Review;
 
+            var oldAttachmentKeys = Enumerable.Empty<string>();
             if (application.Reply != null)
             {
+                oldAttachmentKeys = application.Reply.Attachments.Select(a => a.FileKey).ToList();
                 dbContext.Replies.Remove(application.Reply);
+                dbContext.Attachments.RemoveRange(application.Reply.Attachments);
             }
 
             var reply = new Reply()
@@ -83,8 +90,23 @@ namespace ApplicationSystem.UseCases.Authority.Commands.SendReplyOnReview
             dbContext.Replies.Add(reply);
             dbContext.Applications.Update(application);
             await dbContext.SaveChangesAsync(cancellationToken);
+            await RemoveOldAttachmentFilesAsync(oldAttachmentKeys);
 
             return Unit.Value;
+        }
+
+        private async Task RemoveOldAttachmentFilesAsync(IEnumerable<string> fileKeys)
+        {
+            try
+            {
+                foreach (var fileKey in fileKeys)
+                {
+                    await attachmentService.RemoveAttachmentAsync(fileKey, CancellationToken.None);
+                }
+            }
+            catch
+            {
+            }
         }
     }
 }
