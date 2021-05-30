@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using ApplicationSystem.DataAccess;
 using Saritasa.Tools.Domain.Exceptions;
+using ApplicationSystem.DataAccess;
 
 namespace ApplicationSystem.UseCases.Admin.AddUserToRole
 {
@@ -29,7 +29,8 @@ namespace ApplicationSystem.UseCases.Admin.AddUserToRole
         public async Task<Unit> Handle(AddUserToRoleCommand request, CancellationToken cancellationToken)
         {
             var user = await dbContext.Users.SingleAsync(u => u.Id == request.UserId, cancellationToken);
-            var result = await userManager.AddToRoleAsync(user, request.Role);
+            var role = await dbContext.Roles.SingleAsync(r => r.Id == request.RoleId, cancellationToken);
+            var result = await userManager.AddToRoleAsync(user, role.NormalizedName);
 
             if (!result.Succeeded)
             {

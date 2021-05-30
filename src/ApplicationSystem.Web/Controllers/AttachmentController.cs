@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using ApplicationSystem.Infrastructure.Common.Dtos.Attachments;
 using ApplicationSystem.UseCases.Attachments.GetAttachment;
 using Microsoft.AspNetCore.Authorization;
+using ApplicationSystem.UseCases.Attachments.Dtos;
 
 namespace ApplicationSystem.Web.Controllers
 {
@@ -29,11 +30,11 @@ namespace ApplicationSystem.Web.Controllers
         /// <summary>
         /// Get attachment.
         /// </summary>
-        [HttpGet]
+        [HttpGet("{attachmentId}")]
         [AllowAnonymous]
-        public async Task<AttachmentDto> GetAttachment([FromQuery] GetAttachmentQuery query, CancellationToken cancellationToken)
+        public async Task<AttachmentBase64Dto> GetAttachment(int attachmentId, CancellationToken cancellationToken)
         {
-            return await mediator.Send(query, cancellationToken);
+            return await mediator.Send(new GetAttachmentQuery() { AttachmentId = attachmentId }, cancellationToken);
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using ApplicationSystem.Infrastructure.Common.Dtos.Attachments;
 
 namespace ApplicationSystem.Infrastructure.Common.Dtos
 {
@@ -27,6 +26,6 @@ namespace ApplicationSystem.Infrastructure.Common.Dtos
         /// <summary>
         /// Attachments.
         /// </summary>
-        public ICollection<AttachmentInfoDto> Attachments { get; set; }
+        public ICollection<int> Attachments { get; set; }
     }
 }

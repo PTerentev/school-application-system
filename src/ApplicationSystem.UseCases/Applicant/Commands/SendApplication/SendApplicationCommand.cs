@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using ApplicationSystem.UseCases.Common.Behaviors;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
@@ -7,7 +8,7 @@ namespace ApplicationSystem.UseCases.Applicant.Commands.SendApplication
     /// <summary>
     /// Send application command.
     /// </summary>
-    public class SendApplicationCommand : IRequest
+    public class SendApplicationCommand : IRequestWithAttachment, IRequest
     {
         /// <summary>
         /// Name of the application.
@@ -26,5 +27,10 @@ namespace ApplicationSystem.UseCases.Applicant.Commands.SendApplication
         /// Attachment files.
         /// </summary>
         public IFormFileCollection FormFiles { get; set; }
+
+        /// <summary>
+        /// Application type id.
+        /// </summary>
+        public int? ApplicationTypeId { get; set; } = null;
     }
 }

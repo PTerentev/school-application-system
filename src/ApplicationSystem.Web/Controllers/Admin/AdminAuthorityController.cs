@@ -12,6 +12,8 @@ using ApplicationSystem.UseCases.Authority.Queries.GetAllAuthoritiesQuery;
 using ApplicationSystem.UseCases.Authority.Dtos;
 using ApplicationSystem.Web.Models;
 using ApplicationSystem.UseCases.Admin.AddUserToAuthority;
+using System.ComponentModel.DataAnnotations;
+using ApplicationSystem.UseCases.Admin.Commands.AddApplicationType;
 
 namespace ApplicationSystem.Web.Controllers.Admin
 {
@@ -75,13 +77,29 @@ namespace ApplicationSystem.Web.Controllers.Admin
         }
 
         /// <summary>
+        /// Add application type for authority.
+        /// </summary>
+        [HttpPost("{authorityId}/type")]
+        public async Task<StatusCodeResult> AddApplicationType(int authorityId, [FromBody] AddApplicationTypeModel model, CancellationToken cancellationToken)
+        {
+            var command = new AddApplicationTypeCommand()
+            {
+                Name = model.Name,
+                AuthorityId = authorityId
+            };
+
+            await mediator.Send(command, cancellationToken);
+            return StatusCode(StatusCodes.Status201Created);
+        }
+
+        /// <summary>
         /// Create authority.
         /// </summary>
         [HttpPost]
-        public async Task<StatusCodeResult> CreateAuthority([FromBody] CreateAuthorityCommand command, CancellationToken cancellationToken)
+        public async Task<StatusCodeResult> AddAuthority([FromBody] CreateAuthorityCommand command, CancellationToken cancellationToken)
         {
             await mediator.Send(command, cancellationToken);
-            return StatusCode(StatusCodes.Status200OK);
+            return StatusCode(StatusCodes.Status201Created);
         }
     }
 }

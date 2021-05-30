@@ -7,6 +7,7 @@ using ApplicationSystem.Web.Infrastructure.ServiceExtensions;
 using ApplicationSystem.Web.Infrastructure;
 using ApplicationSystem.UseCases.Extensions;
 using ApplicationSystem.Infrastructure.Extensions;
+using ApplicationSystem.Infrastructure.Web.Infrastructure.Middlewares;
 
 namespace ApplicationSystem.Web
 {
@@ -73,6 +74,7 @@ namespace ApplicationSystem.Web
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseMiddleware<ApiExceptionMiddleware>();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers().RequireAuthorization();

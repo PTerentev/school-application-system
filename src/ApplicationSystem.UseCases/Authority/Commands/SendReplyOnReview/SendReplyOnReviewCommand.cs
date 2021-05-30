@@ -2,13 +2,14 @@
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using ApplicationSystem.UseCases.Authority.Common;
+using ApplicationSystem.UseCases.Common.Behaviors;
 
 namespace ApplicationSystem.UseCases.Authority.Commands.SendReplyOnReview
 {
     /// <summary>
     /// Send reply on review command.
     /// </summary>
-    public class SendReplyOnReviewCommand : AuthorityRequestBase, IRequest
+    public class SendReplyOnReviewCommand : AuthorityRequestBase, IRequestWithAttachment, IRequest
     {
         /// <summary>
         /// Application Id.
