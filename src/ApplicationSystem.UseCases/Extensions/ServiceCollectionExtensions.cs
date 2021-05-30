@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using ApplicationSystem.UseCases.Authority.Behaviors;
+using ApplicationSystem.UseCases.Common.Behaviors;
 
 namespace ApplicationSystem.UseCases.Extensions
 {
@@ -19,6 +20,7 @@ namespace ApplicationSystem.UseCases.Extensions
             services.AddMediatR(Assembly.GetExecutingAssembly());
 
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AccessAuthorityPermissionBehavior<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestWithAttachmentBehavior<,>));
 
             return services;
         }

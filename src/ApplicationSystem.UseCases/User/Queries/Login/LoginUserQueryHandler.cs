@@ -52,9 +52,13 @@ namespace ApplicationSystem.UseCases.User.Login
             var principal = await signInManager.CreateUserPrincipalAsync(user);
             var token = GenerateToken(principal.Claims.ToList());
 
+            var roles = await userManager.GetRolesAsync(user);
+            var userDto = mapper.Map<UserDto>(user);
+            userDto.UserRoles = roles;
+
             return new LoginUserQueryResult
             {
-                User = mapper.Map<UserDto>(user),
+                User = userDto,
                 Token = token
             };
         }

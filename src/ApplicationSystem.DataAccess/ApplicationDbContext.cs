@@ -47,6 +47,11 @@ namespace ApplicationSystem.DataAccess
         public DbSet<Authority> Authorities { get; protected set; }
 
         /// <summary>
+        /// Application types.
+        /// </summary>
+        public DbSet<ApplicationType> ApplicationTypes { get; protected set; }
+
+        /// <summary>
         /// Notifications.
         /// </summary>
         public DbSet<Notification> Notifications { get; protected set; }

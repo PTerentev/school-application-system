@@ -8,9 +8,9 @@ namespace ApplicationSystem.Web.Models
     public class AddUserToRoleModel
     {
         /// <summary>
-        /// Role.
+        /// Role Id.
         /// </summary>
         [Required]
-        public string Role { get; set; }
+        public int RoleId { get; set; }
     }
 }

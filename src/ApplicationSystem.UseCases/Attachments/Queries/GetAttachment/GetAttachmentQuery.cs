@@ -1,18 +1,18 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using MediatR;
-using ApplicationSystem.Infrastructure.Common.Dtos.Attachments;
+using ApplicationSystem.UseCases.Attachments.Dtos;
 
 namespace ApplicationSystem.UseCases.Attachments.GetAttachment
 {
     /// <summary>
     /// Get attachment query.
     /// </summary>
-    public class GetAttachmentQuery : IRequest<AttachmentDto>
+    public class GetAttachmentQuery : IRequest<AttachmentBase64Dto>
     {
         /// <summary>
-        /// File key.
+        /// Attachment Id.
         /// </summary>
         [Required]
-        public string FileKey { get; set; }
+        public int AttachmentId { get; set; }
     }
 }

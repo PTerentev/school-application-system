@@ -49,7 +49,7 @@ namespace ApplicationSystem.UseCases.Authority.Queries.GetApplicationsFromAllUse
 
             if (!await userManager.HasAnyRole(userId.GetValueOrDefault(), Domain.Entities.UserRoles.Admin))
             {
-                var usersAuthorities = await dbContext.Users.Where(u => u.Id == userId).SelectMany(u => u.Authorities).ToListAsync(cancellationToken);
+                var usersAuthorities = dbContext.Users.Where(u => u.Id == userId).SelectMany(u => u.Authorities);
                 query = query.Where(a => usersAuthorities.Any(ua => ua.Id == a.AuthorityId));
             }
 
